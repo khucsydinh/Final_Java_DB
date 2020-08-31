@@ -4,7 +4,7 @@
 Xây dựng hệ CSDL quản lý thông tin theo một kịch bản cho trước sử dụng MySQL cùng tất cả các kiến thức đã làm quen trong suốt khoá học về Database.
 Xây dựng giao diện gồm cả frontend và backend để phát triển các ứng dụng trên nền CSDL đã được xây dựng để tạo nên một hệ thống thông tin hoàn chỉnh theo kịch bản đã cho trước. Backend được xây dựng theo mô hình Web Service trên nền tảng Spring Rest API. Frontend được xây dựng trên nền Web, sử dụng Spring MVC hoặc một frontend framework khác tuỳ chọn.
 
-================================================================
+=====================================================================================
 (1) Xây dựng hệ thống quản lý một phòng khám bệnh tư nhân
 Yêu cầu về CSDL (Các ràng buộc về số lượng các bản ghi trong CSDL cần phải được thể hiện)
 • Thông tin cơ bản về bác sỹ bao gồm CMT, tên, mã số BS, ngày sinh, địa chỉ, bậc nghề, thâm niên, trình độ đào tạo, chuyên môn. 
