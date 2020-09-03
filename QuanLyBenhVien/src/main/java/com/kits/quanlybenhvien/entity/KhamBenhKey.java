@@ -2,13 +2,16 @@ package com.kits.quanlybenhvien.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.EmbeddedId;
 
 @Embeddable
-public class KhamKey {
+public class KhamBenhKey {
     @Column(name = "MaBK")
-    Integer maBK;
+    String MaBK;
     @Column(name = "MaBSKham")
     String maBSKham;
-    @Column(name = " MaBN")
+    @Column(name = "MaBN")
     String maBN;
+    @Column(name = "tenBenh")
+    String tenBenh;
 }

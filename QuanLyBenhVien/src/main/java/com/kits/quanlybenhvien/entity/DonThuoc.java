@@ -7,15 +7,12 @@ import lombok.RequiredArgsConstructor;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import java.util.Date;
 
-@Data
 @Entity
+@Data
 @RequiredArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
-public class Kham {
+public class DonThuoc {
     @EmbeddedId
-    private KhamKey id;
-
-    private Date thoiGian;
+    private DonThuocKey id;
 }

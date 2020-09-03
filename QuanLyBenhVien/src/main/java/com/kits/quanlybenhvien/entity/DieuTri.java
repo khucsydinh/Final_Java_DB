@@ -9,13 +9,14 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import java.util.Date;
 
-@Data
 @Entity
+@Data
 @RequiredArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
-public class Kham {
+public class DieuTri {
     @EmbeddedId
-    private KhamKey id;
+    private DieuTriKey id;
 
     private Date thoiGian;
+    private boolean trangThai;
 }
