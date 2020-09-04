@@ -1,5 +1,7 @@
 package com.kits.quanlybenhvien.entity;
+
 import com.sun.istack.internal.NotNull;
+import com.sun.javafx.beans.IDProperty;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,27 +17,17 @@ import java.util.Date;
 @Entity
 @RequiredArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
-public class BacSi {
+public class Patient {
     @Id
-    private String maBS;
-
+    private String ID_Patient;
     @NotNull
-    private String CMT;
+    private String identityNumber;
     @NotNull
-    private String tenBS;
+    private String namePatient;
     @NotNull
     private Date DOB;
     @NotNull
-    private String diaChi;
+    private String address;
     @NotNull
-    private int thamNien;
-    @NotNull
-    private String trinhDo;
-    @NotNull
-    private String chuyenMon;
-    @NotNull
-    private String bacNghe;
-
-    @OneToMany(mappedBy = "maBSKham")
-    private Collection <Kham> khams;
+    private String phone;
 }

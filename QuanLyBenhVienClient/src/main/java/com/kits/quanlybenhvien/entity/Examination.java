@@ -4,12 +4,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
-
 @Data
 @NoArgsConstructor(force = true)
-public class Kham {
-    private Integer maBK;
-    private String maBSKham;
-    private String maBN;
-    private Date thoigian;
+public class Examination {
+    Integer ID_Examination;
+    String ID_DoctorExamination;
+    String ID_Patient;
+    private Date atTime;
 }

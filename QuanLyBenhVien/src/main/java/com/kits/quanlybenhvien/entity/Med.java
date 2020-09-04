@@ -5,17 +5,23 @@ import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import java.util.List;
 
 @Data
 @Entity
 @RequiredArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
-public class Thuoc {
+public class Med {
     @Id
-    private String tenThuoc;
+    private String nameMed;
+
+    @ManyToMany
+    List<Treatment> TreatmentList;
+
     @NonNull
-    private float gia;
+    private float price;
     @NotNull
-    private String suDung;
+    private String usedFor;
 
 }

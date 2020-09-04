@@ -1,21 +1,27 @@
 package com.kits.quanlybenhvien.entity;
 
-import lombok.AccessLevel;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import java.util.Date;
+import java.util.List;
 
-@Data
 @Entity
+@Data
 @RequiredArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
-public class Kham {
+public class Treatment {
     @EmbeddedId
-    private KhamKey id;
+    private TreatmentKey id;
+
+    @ManyToMany
+    List<Med> medList;
+
+    @ManyToMany
+    List<Service> serviceList;
 
     private Date thoiGian;
+    private boolean trangThai;
 }

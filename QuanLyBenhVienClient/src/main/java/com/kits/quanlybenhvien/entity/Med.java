@@ -5,9 +5,9 @@ import lombok.*;
 
 @Data
 @NoArgsConstructor(force = true)
-public class Thuoc {
-    private String tenThuoc;
-    private float gia;
-    private String suDung;
+public class Med {
+    private String nameMed;
+    private float price;
+    private String usedFor;
 
 }
