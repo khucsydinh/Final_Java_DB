@@ -1,22 +1,18 @@
 package com.kits.quanlybenhvien.entity;
 
-import lombok.AccessLevel;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import java.util.Date;
 
-@Entity
 @Data
+@Entity
 @RequiredArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
-public class DieuTri {
+public class Examination {
     @EmbeddedId
-    private DieuTriKey id;
+    private ExaminationKey id;
 
-    private Date thoiGian;
-    private boolean trangThai;
+    private Date atTime;
 }

@@ -1,7 +1,6 @@
 package com.kits.quanlybenhvien.entity;
 
 import com.sun.istack.internal.NotNull;
-import com.sun.javafx.beans.IDProperty;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,25 +8,27 @@ import lombok.RequiredArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import java.util.Collection;
 import java.util.Date;
 
 @Data
 @Entity
 @RequiredArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
-public class BenhNhan {
+public class Nurse {
     @Id
-    private String maBN;
+    private String ID_Nurse;
     @NotNull
-    private String CMT;
+    private String identityNumber;
     @NotNull
-    private String tenBN;
+    private String nameNurse;
     @NotNull
     private Date DOB;
     @NotNull
-    private String diaChi;
+    private String address;
     @NotNull
-    private String SDT;
+    private int exp;
+    @NotNull
+    private String diploma;
+    @NotNull
+    private String phone;
 }

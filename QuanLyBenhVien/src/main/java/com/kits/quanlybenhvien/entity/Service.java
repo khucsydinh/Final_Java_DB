@@ -7,15 +7,20 @@ import lombok.RequiredArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import java.util.List;
 
 @Data
 @Entity
 @RequiredArgsConstructor
 @NoArgsConstructor
-public class DichVu {
+public class Service {
     @Id
-    private String tenDichVu;
+    private String nameService;
+
+    @ManyToMany
+    List<Treatment> TreatmentList;
 
     @NotNull
-    private float gia;
+    private float price;
 }
