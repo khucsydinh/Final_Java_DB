@@ -1,5 +1,6 @@
 package com.kits.quanlybenhvien.web.api;
 
+
 import com.kits.quanlybenhvien.entity.DiseaseExamine;
 import com.kits.quanlybenhvien.entity.DiseaseExamineKey;
 import com.kits.quanlybenhvien.repository.DiseaseExamineRepository;
@@ -19,6 +20,10 @@ public class DiseaseExamineController {
     public DiseaseExamineController(DiseaseExamineRepository diseaseExamineRepository){
         this.diseaseExamineRepository = diseaseExamineRepository;
     }
+    @GetMapping
+    public Iterable<DiseaseExamine> getAllDiseaseExamine(){
+        return diseaseExamineRepository.findAll();
+    }
     @GetMapping("/{id}")
     public DiseaseExamine DiseaseExamineById(@PathVariable(value = "id", required = false) DiseaseExamineKey id){
         Optional<DiseaseExamine> optionalDiseaseExamine = diseaseExamineRepository.findById(id);
@@ -35,8 +40,7 @@ public class DiseaseExamineController {
     }
     @PostMapping(consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    public DiseaseExamine saveExamination(@RequestBody DiseaseExamine diseaseExamine){
+    public DiseaseExamine saveDiseaseExamine(@RequestBody DiseaseExamine diseaseExamine){
         return diseaseExamineRepository.save(diseaseExamine);
     }
 }
-

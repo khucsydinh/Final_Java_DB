@@ -31,14 +31,14 @@ public class DiseaseExamineController {
         return "formAddDiseaseExamine";
     }
     @PostMapping
-    public String addDiseaseExamine(@RequestParam(value = "IDExamination",required = false) int IDExamination,
+    public String addDiseaseExamine(@RequestParam(value = "ID_Examination",required = false) int ID_Examination,
                                     @RequestParam(value = "ID_DoctorExamination",required = false)String ID_DoctorExamination,
-                                    @RequestParam(value = "IDPatient",required = false)String IDPatient,
+                                    @RequestParam(value = "ID_Patient",required = false)String ID_Patient,
                                     @RequestParam(value = "nameDisease",required = false)String nameDisease){
         DiseaseExamine diseaseExamine = new DiseaseExamine();
-        diseaseExamine.setID_Examination(IDExamination);
+        diseaseExamine.setID_Examination(ID_Examination);
         diseaseExamine.setID_DoctorExamination(ID_DoctorExamination);
-        diseaseExamine.setID_Patient(IDPatient);
+        diseaseExamine.setID_Patient(ID_Patient);
         diseaseExamine.setNameDisease(nameDisease);
 
         log.info("New"+diseaseExamine);
