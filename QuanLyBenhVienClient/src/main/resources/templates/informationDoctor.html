@@ -7,10 +7,10 @@
 </head>
 <body>
 <h1>Information Doctor</h1>
-<form method="get " th:action="@{/}" action="#">
+<form method="post" th:action="@{/doctor/search}" action="#">
     <div>
-        <input/>
-        <button></button>
+        <input name="id" type="text" placeholder="Search Id..."/>
+        <button>Search</button>
     </div>
     <div>
         <table cellpadding="5" border="1" th:object="${doctors}">
@@ -24,7 +24,8 @@
                 <td align="right"><label for="diploma">Diploma</label></td>
                 <td align="right"><label for="field">Field</label></td>
                 <td align="right"><label for="position">Position</label></td>
-
+                <td align="right"><label for="delete">Delete</label></td>
+                <td align="right"><label for="edit">Edit</label></td>
             </tr>
             <tr th:each="doctor:${doctors}">
                 <td align="left"><label th:text="${doctor.ID_Doctor}"></label></td>
@@ -36,6 +37,8 @@
                 <td align="left"><label th:text="${doctor.diploma}"></label></td>
                 <td align="left"><label th:text="${doctor.field}"></label></td>
                 <td align="left"><label th:text="${doctor.position}"></label></td>
+                <td><a href="#" th:href="@{/doctor/delete/{id}(id=${doctor.ID_Doctor})}">Delete</a></td>
+                <td><a href="#" th:href="@{/doctor/edit/{id}(id=${doctor.ID_Doctor})}">Edit</a></td>
             </tr>
         </table>
     </div>

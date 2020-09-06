@@ -3,13 +3,25 @@ package com.kits.quanlybenhvien.entity;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
+
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Data
 @Entity
 @RequiredArgsConstructor
-public class DiseaseExamine {
-    @EmbeddedId
-    private DiseaseExamineKey id;
+@IdClass(DiseaseExamineKey.class)
+public class DiseaseExamine extends DiseaseExamineKey {
+    @Id
+    @Column(name = "ID_Examination")
+    Integer ID_Examination;
+    @Id
+    @Column(name = "ID_Doctor_Examination")
+    String ID_DoctorExamination;
+    @Id
+    @Column(name = "ID_Patient")
+    String ID_Patient;
+    @Id
+    @Column(name = "Name_Disease")
+    String nameDisease;
 }

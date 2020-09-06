@@ -7,8 +7,8 @@ import java.io.Serializable;
 
 @Data
 @NoArgsConstructor(force = true)
-public class DiseaseExamine implements Serializable {
-    String ID_Examination;
+public class DiseaseExamine  {
+    Integer ID_Examination;
     String ID_DoctorExamination;
     String ID_Patient;
     String nameDisease;

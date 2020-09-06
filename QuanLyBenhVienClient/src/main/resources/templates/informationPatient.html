@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Information Examination</title>
+</head>
+<body>
+<h1>Information Examination</h1>
+<form method="get " th:action="@{/examination/search}" action="#">
+    <div>
+        <input name="id" type="text" placeholder="Search Id..."/>
+        <button>Search</button>
+    </div>
+    <div>
+        <table cellpadding="5" border="1" th:object="${examinations}">
+            <tr>
+                <td align="right"><label for="IDExamination">ID Examination</label></td>
+                <td align="right"><label for="IDDoctorExamination">ID Doctor Examination</label></td>
+                <td align="right"><label for="IDPatient">ID Patient</label></td>
+                <td align="right"><label for="AtTime">At Time</label></td>
+                <td align="right"><label for="delete">Delete</label></td>
+                <td align="right"><label for="edit">Edit</label></td>
+            </tr>
+            <tr th:each="examination:${examinations}">
+                <td align="left"><label th:text="${examination.IDExamination}"></label></td>
+                <td align="left"><label th:text="${examination.IDDoctorExamination}"></label></td>
+                <td align="left"><label th:text="${examination.IDPatient}"></label></td>
+                <td align="left"><label th:text="${examination.AtTime}"></label></td>
+                <td><a href="#" th:href="@{/examination/delete/{id}(id=${examination.ID_examination})}">Delete</a></td>
+                <td><a href="#" th:href="@{/examination/edit/{id}(id=${examination.ID_examination})}">Edit</a></td>
+            </tr>
+        </table>
+    </div>
+</form>
+<h2><a th:href="@{/examination/add}" href="#">Add new examination</a></h2>
+</body>
+</html>

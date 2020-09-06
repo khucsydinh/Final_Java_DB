@@ -7,8 +7,8 @@ import java.util.Date;
 @Data
 @NoArgsConstructor(force = true)
 public class Examination {
-    Integer ID_Examination;
+    Integer IDExamination;
     String ID_DoctorExamination;
-    String ID_Patient;
+    String IDPatient;
     private Date atTime;
 }
