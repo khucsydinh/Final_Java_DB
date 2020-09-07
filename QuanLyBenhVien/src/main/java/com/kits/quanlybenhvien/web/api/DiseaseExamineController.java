@@ -3,6 +3,8 @@ package com.kits.quanlybenhvien.web.api;
 
 import com.kits.quanlybenhvien.entity.DiseaseExamine;
 import com.kits.quanlybenhvien.entity.DiseaseExamineKey;
+import com.kits.quanlybenhvien.entity.Examination;
+import com.kits.quanlybenhvien.entity.ExaminationKey;
 import com.kits.quanlybenhvien.repository.DiseaseExamineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -24,18 +26,34 @@ public class DiseaseExamineController {
     public Iterable<DiseaseExamine> getAllDiseaseExamine(){
         return diseaseExamineRepository.findAll();
     }
-    @GetMapping("/{id}")
-    public DiseaseExamine DiseaseExamineById(@PathVariable(value = "id", required = false) DiseaseExamineKey id){
-        Optional<DiseaseExamine> optionalDiseaseExamine = diseaseExamineRepository.findById(id);
+    @GetMapping("/{id}/{id2}/{id3}/{id4}")
+    public DiseaseExamine DiseaseExamineById(@PathVariable(value = "id", required = false) Integer id,
+                                             @PathVariable(value = "id2", required = false) String id2,
+                                             @PathVariable(value = "id3", required = false) String id3,
+                                             @PathVariable(value = "id4", required = false) String id4){
+        DiseaseExamineKey diseaseExamineKey = new DiseaseExamineKey();
+        diseaseExamineKey.setID_Examination(id);
+        diseaseExamineKey.setID_DoctorExamination(id2);
+        diseaseExamineKey.setID_Patient(id3);
+        diseaseExamineKey.setNameDisease(id4);
+        Optional<DiseaseExamine> optionalDiseaseExamine = diseaseExamineRepository.findById(diseaseExamineKey);
         if(optionalDiseaseExamine.isPresent()){
             return optionalDiseaseExamine.get();
         }
         return null;
     }
-    @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable(value = "id", required = false) DiseaseExamineKey id){
+    @DeleteMapping("/delete/{id}/{id2}/{id3}/{id4}")
+    public void delete(@PathVariable(value = "id", required = false) Integer id,
+                       @PathVariable(value = "id2", required = false) String id2,
+                       @PathVariable(value = "id3", required = false) String id3,
+                       @PathVariable(value = "id4", required = false) String id4){
+        DiseaseExamineKey diseaseExamineKey = new DiseaseExamineKey();
+        diseaseExamineKey.setID_Examination(id);
+        diseaseExamineKey.setID_DoctorExamination(id2);
+        diseaseExamineKey.setID_Patient(id3);
+        diseaseExamineKey.setNameDisease(id4);
         try {
-            diseaseExamineRepository.deleteById(id);
+            diseaseExamineRepository.deleteById(diseaseExamineKey);
         }catch (EmptyResultDataAccessException e){}
     }
     @PostMapping(consumes = "application/json")
