@@ -24,10 +24,10 @@ public class ExaminationController {
     public Iterable<Examination> getAllExamination(){
         return examinationRepository.findAll();
     }
-    @GetMapping("/{id}")
+    @GetMapping("/{id}/{id2}/{id3}")
     public Examination ExaminationById(@PathVariable(value = "id", required = false) Integer id,
-                                       @PathVariable(value = "id", required = false) String id2,
-                                       @PathVariable(value = "id", required = false) String id3){
+                                       @PathVariable(value = "id2", required = false) String id2,
+                                       @PathVariable(value = "id3", required = false) String id3){
         ExaminationKey examinationKey = new ExaminationKey();
         examinationKey.setIDExamination(id);
         examinationKey.setID_DoctorExamination(id2);

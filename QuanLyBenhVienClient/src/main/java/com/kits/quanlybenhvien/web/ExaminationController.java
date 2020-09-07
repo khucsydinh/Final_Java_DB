@@ -23,6 +23,7 @@ public class ExaminationController {
     public String informationExamination(Model model){
         List<Examination> examinations = Arrays.asList(rest.getForObject("http://localhost:8081/examination",Examination[].class));
         model.addAttribute("examinations",examinations);
+
         return "informationExamination";
     }
     @GetMapping("/add")
@@ -31,12 +32,10 @@ public class ExaminationController {
         return "formAddExamination";
     }
     @PostMapping
-    public String addExamination(@RequestParam(value = "IDExamination",required = false) int IDExamination,
-                                 @RequestParam(value = "ID_DoctorExamination",required = false)String ID_DoctorExamination,
+    public String addExamination(@RequestParam(value = "ID_DoctorExamination",required = false)String ID_DoctorExamination,
                                  @RequestParam(value = "IDPatient",required = false)String IDPatient,
                                  @RequestParam(value = "atTime",required = false) @DateTimeFormat(pattern="yyyy-MM-dd") Date atTime){
         Examination examination = new Examination();
-        examination.setIDExamination(IDExamination);
         examination.setID_DoctorExamination(ID_DoctorExamination);
         examination.setIDPatient(IDPatient);
         examination.setAtTime(atTime);
@@ -50,15 +49,17 @@ public class ExaminationController {
                                     @PathVariable(value = "id2",required = false) String id2,
                                     @PathVariable(value = "id3",required = false) String id3,
                                     Model model){
-        System.out.println(id2);
         rest.delete("http://localhost:8081/examination/delete/{id}/{id2}/{id3}",id,id2,id3);
         List<Examination> examinations = Arrays.asList(rest.getForObject("http://localhost:8081/examination",Examination[].class));
         model.addAttribute("examinations",examinations);
         return "informationExamination";
     }
-    @GetMapping("/edit/{id}")
-    public String editExamination(@PathVariable(value = "id",required = false)int id,Model model){
-        Examination examination = rest.getForObject("http://localhost:8081/examination/{id}",Examination.class,id);
+    @GetMapping("/edit/{id}/{id2}/{id3}")
+    public String editExamination(@PathVariable(value = "id",required = false) int id,
+                                  @PathVariable(value = "id2",required = false) String id2,
+                                  @PathVariable(value = "id3",required = false) String id3,
+                                  Model model){
+        Examination examination = rest.getForObject("http://localhost:8081/examination/{id}/{id2}/{id3}",Examination.class,id,id2,id3);
         model.addAttribute("examination",examination);
         return "formAddExamination";
     }

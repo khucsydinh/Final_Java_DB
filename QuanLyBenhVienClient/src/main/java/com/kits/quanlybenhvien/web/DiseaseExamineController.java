@@ -45,16 +45,24 @@ public class DiseaseExamineController {
         rest.postForObject("http://localhost:8081/diseaseExamine",diseaseExamine,DiseaseExamine.class);
         return "redirect:/diseaseExamine";
     }
-    @GetMapping("/delete/{id}")
-    public String deleteDiseaseExamine(@PathVariable(value = "id",required = false) String id,Model model){
-        rest.delete("http://localhost:8081/diseaseExamine/delete/{id}",id);
+    @GetMapping("/delete/{id}/{id2}/{id3}/{id4}")
+    public String deleteDiseaseExamine(@PathVariable(value = "id",required = false) int id,
+                                       @PathVariable(value = "id2",required = false) String id2,
+                                       @PathVariable(value = "id3",required = false) String id3,
+                                       @PathVariable(value = "id4",required = false) String id4,
+                                       Model model){
+        rest.delete("http://localhost:8081/diseaseExamine/delete/{id}/{id2}/{id3}/{id4}",id,id2,id3,id4);
         List<DiseaseExamine> diseaseExamines = Arrays.asList(rest.getForObject("http://localhost:8081/diseaseExamine",DiseaseExamine[].class));
         model.addAttribute("diseaseExamines",diseaseExamines);
         return "informationDiseaseExamine";
     }
-    @GetMapping("/edit/{id}")
-    public String editDiseaseExamine(@PathVariable(value = "id",required = false)String id,Model model){
-        DiseaseExamine diseaseExamine = rest.getForObject("http://localhost:8081/diseaseExamine/{id}",DiseaseExamine.class,id);
+    @GetMapping("/edit/{id}/{id2}/{id3}/{id4}")
+    public String editDiseaseExamine(@PathVariable(value = "id",required = false) int id,
+                                     @PathVariable(value = "id2",required = false) String id2,
+                                     @PathVariable(value = "id3",required = false) String id3,
+                                     @PathVariable(value = "id4",required = false) String id4,
+                                     Model model){
+        DiseaseExamine diseaseExamine = rest.getForObject("http://localhost:8081/diseaseExamine/{id}/{id2}/{id3}/{id4}",DiseaseExamine.class,id,id2,id3,id4);
         model.addAttribute("diseaseExamine",diseaseExamine);
         return "formAddDiseaseExamine";
     }

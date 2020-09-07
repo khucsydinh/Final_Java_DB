@@ -27,8 +27,8 @@
                 <td align="left"><label th:text="${diseaseExamine.ID_DoctorExamination}"></label></td>
                 <td align="left"><label th:text="${diseaseExamine.ID_Patient}"></label></td>
                 <td align="left"><label th:text="${diseaseExamine.nameDisease}"></label></td>
-                <td><a href="#" th:href="@{/diseaseExamine/delete/{id}(id=${diseaseExamine.ID_Examination})}">Delete</a></td>
-                <td><a href="#" th:href="@{/diseaseExamine/edit/{id}(id=${diseaseExamine.ID_Examination})}">Edit</a></td>
+                <td><a href="#" th:href="@{/diseaseExamine/delete/{id}/{id2}/{id3}/{id4}(id=${diseaseExamine.ID_Examination},id2=${diseaseExamine.ID_DoctorExamination},id3=${diseaseExamine.ID_Patient},id4=${diseaseExamine.nameDisease})}">Delete</a></td>
+                <td><a href="#" th:href="@{/diseaseExamine/edit/{id}/{id2}/{id3}/{id4}(id=${diseaseExamine.ID_Examination},id2=${diseaseExamine.ID_DoctorExamination},id3=${diseaseExamine.ID_Patient},id4=${diseaseExamine.nameDisease})}">Edit</a></td>
             </tr>
         </table>
     </div>

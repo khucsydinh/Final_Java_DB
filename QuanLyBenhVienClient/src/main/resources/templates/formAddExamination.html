@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head><title>Examination</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
+</head>
+<body>
+<form method="POST" th:action="@{/examination}" action="" th:object="${examination}">
+    <h1>Add a new Examination Schedule!</h1>
+    <h3>Input the Examination information ...</h3>
+    <table cellspacing="5" border="0">
+
+        <tr>
+            <td align="right"><label for="identity">ID Doctor Examination: </label></td>
+            <td align="right"><input name="identity" type="text" th:field="*{ID_DoctorExamination}"/></td>
+        </tr>
+        <tr>
+            <td align="right"><label for="name">ID Patient: </label></td>
+            <td align="right"><input name="name" type="text" th:field="*{IDPatient}"/></td>
+        <tr>
+            <td align="right"><label for="atTime">atTime: </label></td>
+            <td align="right"><input name="atTime" type="text" th:field="*{atTime}"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><br><input type="submit" value="Submit"></td>
+        </tr>
+    </table>
+
+</form>
+</body>
+</html>

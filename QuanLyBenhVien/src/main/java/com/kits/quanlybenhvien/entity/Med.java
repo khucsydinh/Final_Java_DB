@@ -16,7 +16,7 @@ public class Med {
     @Id
     private String nameMed;
 
-    @ManyToMany
+    @ManyToMany(targetEntity = Treatment.class)
     List<Treatment> TreatmentList;
 
     @NonNull

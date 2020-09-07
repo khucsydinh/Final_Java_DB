@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Information treatment</title>
+</head>
+<body>
+<h1>Information treatment</h1>
+<form method="get " th:action="@{/treatment/search}" action="#">
+    <div>
+        <input name="id" type="text" placeholder="Search Id..."/>
+        <button>Search</button>
+    </div>
+    <div>
+        <table cellpadding="5" border="1" th:object="${treatments}">
+            <tr>
+                <td align="right"><label for="ID_Treatment">ID Treatment</label></td>
+                <td align="right"><label for="ID_Examination">ID Examination</label></td>
+                <td align="right"><label for="nameDisease">Name Disease</label></td>
+                <td align="right"><label for="ID_DoctorExamination">ID Doctor Examination</label></td>
+                <td align="right"><label for="ID_DoctorCure">ID Doctor Cure</label></td>
+                <td align="right"><label for="ID_Patient">ID Patient</label></td>
+                <td align="right"><label for="ID_Nurse">ID Nurse</label></td>
+                <td align="right"><label for="AtTime">At Time</label></td>
+                <td align="right"><label for="status">Status</label></td>
+                <td align="right"><label for="edit">Edit</label></td>
+            </tr>
+            <tr th:each="treatment:${treatments}">
+                <td align="left"><label th:text="${treatment.ID_Treatment}"></label></td>
+                <td align="left"><label th:text="${treatment.IDExamination}"></label></td>
+                <td align="left"><label th:text="${treatment.nameDisease}"></label></td>
+                <td align="left"><label th:text="${treatment.ID_DoctorExamination}"></label></td>
+                <td align="left"><label th:text="${treatment.ID_DoctorCure}"></label></td>
+                <td align="left"><label th:text="${treatment.IDPatient}"></label></td>
+                <td align="left"><label th:text="${treatment.ID_Nurse}"></label></td>
+                <td align="left"><label th:text="${treatment.atTime}"></label></td>
+                <td align="left"><label th:text="${treatment.status}"></label></td>
+
+
+                <td align="left"><label th:text="${treatment.atTime}"></label></td>
+                <td><a href="#" th:href="@{/treatment/edit/{id}/{id2}/{id3}/{id4}/{id5}/{id6}/{id7}
+                (id=${treatment.ID_Treatment},
+                id2=${treatment.IDExamination},
+                id3=${treatment.nameDisease},
+                id4=${treatment.ID_DoctorExamination},
+                id5=${treatment.ID_DoctorCure},
+                id6=${treatment.IDPatient},
+                id7=${treatment.ID_Nurse})}">Edit</a></td>
+            </tr>
+        </table>
+    </div>
+</form>
+<h2><a th:href="@{/treatment/add}" href="#">Add new treatment</a></h2>
+</body>
+</html>
