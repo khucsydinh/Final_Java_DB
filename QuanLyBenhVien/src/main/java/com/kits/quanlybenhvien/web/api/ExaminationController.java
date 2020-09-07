@@ -25,17 +25,29 @@ public class ExaminationController {
         return examinationRepository.findAll();
     }
     @GetMapping("/{id}")
-    public Examination ExaminationById(@PathVariable(value = "id", required = false) ExaminationKey id){
-        Optional<Examination> optionalExamination = examinationRepository.findById(id);
+    public Examination ExaminationById(@PathVariable(value = "id", required = false) Integer id,
+                                       @PathVariable(value = "id", required = false) String id2,
+                                       @PathVariable(value = "id", required = false) String id3){
+        ExaminationKey examinationKey = new ExaminationKey();
+        examinationKey.setIDExamination(id);
+        examinationKey.setID_DoctorExamination(id2);
+        examinationKey.setIDPatient(id3);
+        Optional<Examination> optionalExamination = examinationRepository.findById(examinationKey);
         if(optionalExamination.isPresent()){
             return optionalExamination.get();
         }
         return null;
     }
-    @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable(value = "id", required = false) ExaminationKey id){
+    @DeleteMapping("/delete/{id}/{id2}/{id3}")
+    public void delete(@PathVariable(value = "id", required = false) Integer id,
+                       @PathVariable(value = "id2", required = false) String id2,
+                       @PathVariable(value = "id3", required = false) String id3){
+        ExaminationKey examinationKey = new ExaminationKey();
+        examinationKey.setIDExamination(id);
+        examinationKey.setID_DoctorExamination(id2);
+        examinationKey.setIDPatient(id3);
         try {
-            examinationRepository.deleteById(id);
+            examinationRepository.deleteById(examinationKey);
         }catch (EmptyResultDataAccessException e){}
     }
     @PostMapping(consumes = "application/json")

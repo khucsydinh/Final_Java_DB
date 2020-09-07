@@ -45,21 +45,25 @@ public class ExaminationController {
         rest.postForObject("http://localhost:8081/examination",examination,Examination.class);
         return "redirect:/examination";
     }
-    @GetMapping("/delete/{id}")
-    public String deleteExamination(@PathVariable(value = "id",required = false) String id,Model model){
-        rest.delete("http://localhost:8081/examination/delete/{id}",id);
+    @GetMapping("/delete/{id}/{id2}/{id3}")
+    public String deleteExamination(@PathVariable(value = "id",required = false) int id,
+                                    @PathVariable(value = "id2",required = false) String id2,
+                                    @PathVariable(value = "id3",required = false) String id3,
+                                    Model model){
+        System.out.println(id2);
+        rest.delete("http://localhost:8081/examination/delete/{id}/{id2}/{id3}",id,id2,id3);
         List<Examination> examinations = Arrays.asList(rest.getForObject("http://localhost:8081/examination",Examination[].class));
         model.addAttribute("examinations",examinations);
         return "informationExamination";
     }
     @GetMapping("/edit/{id}")
-    public String editExamination(@PathVariable(value = "id",required = false)String id,Model model){
+    public String editExamination(@PathVariable(value = "id",required = false)int id,Model model){
         Examination examination = rest.getForObject("http://localhost:8081/examination/{id}",Examination.class,id);
         model.addAttribute("examination",examination);
         return "formAddExamination";
     }
     @GetMapping("/search")
-    public String search(@RequestParam(value = "id",required = false) String id,Model model){
+    public String search(@RequestParam(value = "id",required = false) int id,Model model){
         Examination examination = rest.getForObject("http://localhost:8081/examination/{id}", Examination.class,id);
         model.addAttribute("examination",examination);
         return "informationExamination";
