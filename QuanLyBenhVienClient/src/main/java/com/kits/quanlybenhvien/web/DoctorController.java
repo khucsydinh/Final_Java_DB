@@ -59,15 +59,19 @@ public class DoctorController {
 
     @GetMapping("/delete/{id}")
     public String deleteDoctor(@PathVariable("id")String id, Model model) {
-        System.out.println(id);
-        rest.delete("http://localhost:8081/doctor/delete/{ID_Doctor}",id);
+        try{
+            rest.delete("http://localhost:8081/doctor/delete/{ID_Doctor}",id);
+        }catch (Exception e){
+            model.addAttribute("warning","Cannot delete! This doctor is currently in examination");
+        }
+
         List<Doctor> doctors = Arrays.asList(rest.getForObject("http://localhost:8081/doctor",Doctor[].class));
         System.out.println(doctors);
         model.addAttribute("doctors",doctors);
         return "informationDoctor";
     }
     @GetMapping("/edit/{id}")
-    public String editIngredient(@PathVariable(value = "id",required = false)String id,Model model){
+    public String editDoctor(@PathVariable(value = "id",required = false)String id,Model model){
         Doctor doctor = rest.getForObject("http://localhost:8081/doctor/{id}",Doctor.class,id);
         model.addAttribute("doctor",doctor);
         return "formAddDoctor";
