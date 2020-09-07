@@ -23,7 +23,7 @@ public class DoctorController {
         return doctorRepository.findAll();
     }
     @GetMapping("/{id}")
-    public Doctor doctorById(@PathVariable("ID_Doctor") String ID_Doctor){
+    public Doctor doctorById(@PathVariable("id") String ID_Doctor){
         Optional<Doctor> optionalDoctor = doctorRepository.findById(ID_Doctor);
         if(optionalDoctor.isPresent()){
             return optionalDoctor.get();
@@ -31,7 +31,7 @@ public class DoctorController {
         return null;
     }
     @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable("ID_Doctor") String ID_Doctor){
+    public void delete(@PathVariable("id") String ID_Doctor){
         try {
             doctorRepository.deleteById(ID_Doctor);
         }catch (EmptyResultDataAccessException e){}

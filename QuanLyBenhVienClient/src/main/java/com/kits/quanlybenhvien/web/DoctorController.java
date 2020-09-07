@@ -19,7 +19,7 @@ import java.util.List;
 public class DoctorController {
     private RestTemplate rest = new RestTemplate();
     @GetMapping()
-    public String InformationBacSi(Model model){
+    public String InformationDoctor(Model model){
         List<Doctor> doctors = Arrays.asList(rest.getForObject("http://localhost:8081/doctor",Doctor[].class));
         System.out.println(doctors);
         model.addAttribute("doctors",doctors);
@@ -32,8 +32,8 @@ public class DoctorController {
     }
 
     @PostMapping()
-    public String processDesign(@RequestParam("id") String id , @RequestParam("identity") String identity, @RequestParam("name") String name, @RequestParam("dob") Date dob , @RequestParam("address") String address, @RequestParam("exp") int exp,
-                                @RequestParam("diploma") String diploma , @RequestParam("field") String field, @RequestParam("position") String position) {
+    public String processDesign(@RequestParam(value = "id",required = false) String id , @RequestParam(value = "identity",required = false) String identity, @RequestParam(value = "name",required = false) String name, @RequestParam(value = "dob",required = false) Date dob , @RequestParam(value = "address",required = false) String address, @RequestParam(value = "exp",required = false) int exp,
+                                @RequestParam(value = "diploma",required = false) String diploma , @RequestParam(value = "field",required = false) String field, @RequestParam(value = "position",required = false) String position) {
         Doctor doctor = new Doctor();
         doctor.setID_Doctor(id);
         doctor.setIdentityNumber(identity);
@@ -71,4 +71,6 @@ public class DoctorController {
         return "informationIngredient";
     }
 */
+
 }
+

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head><title>Taco Cloud</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
+</head>
+<body>
+<form method="POST" th:action="@{/patient}" action="" th:object="${patient}">
+    <h1>Add a new Ingredient!</h1>
+    <h3>Input the ingredient information ...</h3>
+    <table cellspacing="5" border="0">
+        <tr>
+            <td align="right"><label for="id">ID: </label></td>
+            <td align="right"><input name="id" type="text" th:field="${patient.ID_Patient} "/></td>
+        </tr>
+        <tr>
+            <td align="right"><label for="identity">Identity_Number: </label></td>
+            <td align="right"><input name="identity" type="text" th:field="${patient.identityNumber}"/></td>
+        </tr>
+        <tr>
+            <td align="right"><label for="name">Name_Patient: </label></td>
+            <td align="right"><input name="name" type="text" th:field="${patient.namePatient}"/></td>
+        <tr>
+            <td align="right"><label for="dob">DOB: </label></td>
+            <td align="right"><input name="dob" type="text" th:field="${patient.DOB}"/></td>
+        </tr>
+        <tr>
+            <td align="right"><label for="address">Address: </label></td>
+            <td align="right"><input name="address" type="text" th:field="${patient.address}"/></td>
+        </tr>
+        <tr>
+            <td align="right"><label for="phone">Phone: </label></td>
+            <td align="right"><input name="phone" type="text" th:field="${patient.phone}"/></td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td><br><input type="submit" value="Submit"></td>
+        </tr>
+    </table>
+
+</form>
+</body>
+</html>
