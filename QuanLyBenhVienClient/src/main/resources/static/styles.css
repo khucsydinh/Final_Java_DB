@@ -157,12 +157,6 @@ li.nav-item.active {
     padding: 0px;
 }
 
-<<<<<<< HEAD
-=======
-.table {
-    color: inherit;
-}
->>>>>>> b1105ea5ccfb11a0400aa8e2ff378ac64aa2434b
 .table-striped tbody tr:nth-of-type(odd) {
     background-color: rgba(61,79,90,.03);
 }
