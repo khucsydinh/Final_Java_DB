@@ -3,38 +3,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Information patient</title>
+    <title>Information Patient</title>
 </head>
 <body>
-<h1>Information patient</h1>
-<form method="get " th:action="@{/}" action="#">
+<h1>Information Patient</h1>
+<form method="get " th:action="@{/patient/search}" action="#">
     <div>
-        <input/>
-        <button></button>
+        <input name="id" type="text" placeholder="Search Id..."/>
+        <button>Search</button>
     </div>
     <div>
         <table cellpadding="5" border="1" th:object="${patients}">
             <tr>
                 <td align="right"><label for="id">ID</label></td>
-                <td align="right"><label for="identity">IdentityNo</label></td>
+                <td align="right"><label for="identity">IdentityNumber</label></td>
                 <td align="right"><label for="name">Name</label></td>
                 <td align="right"><label for="dob">DOB</label></td>
                 <td align="right"><label for="address">Address</label></td>
-                <td align="right"><label for="phone">Phone</label></td>
-
+                <td align="right"><label for="exp">Phone</label></td>
+                <td align="right"><label for="delete">Delete</label></td>
+                <td align="right"><label for="edit">Edit</label></td>
             </tr>
             <tr th:each="patient:${patients}">
                 <td align="left"><label th:text="${patient.ID_Patient}"></label></td>
-                <td align="left"><label th:text="${patient.identity_Number}"></label></td>
-                <td align="left"><label th:text="${patient.name_Patient}"></label></td>
+                <td align="left"><label th:text="${patient.identityNumber}"></label></td>
+                <td align="left"><label th:text="${patient.namePatient}"></label></td>
                 <td align="left"><label th:text="${patient.DOB}"></label></td>
                 <td align="left"><label th:text="${patient.address}"></label></td>
                 <td align="left"><label th:text="${patient.phone}"></label></td>
-
+                <td><a href="#" th:href="@{/patient/delete/{id}(id=${patient.ID_Patient})}">Delete</a></td>
+                <td><a href="#" th:href="@{/patient/edit/{id}(id=${patient.ID_Patient})}">Edit</a></td>
             </tr>
         </table>
     </div>
 </form>
-<h2><a th:href="@{/patient/add}" href="#">Add new patient</a></h2>
+<h2><a th:href="@{/patient/add}" href="#">Add new Patient</a></h2>
 </body>
 </html>

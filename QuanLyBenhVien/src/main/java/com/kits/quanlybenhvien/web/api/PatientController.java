@@ -1,53 +1,46 @@
 package com.kits.quanlybenhvien.web.api;
 
-import java.util.Optional;
+import com.kits.quanlybenhvien.entity.Patient;
+import com.kits.quanlybenhvien.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.hateoas.server.EntityLinks;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import com.kits.quanlybenhvien.entity.Patient;
-import com.kits.quanlybenhvien.repository.PatientRepository;
+
+import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "/patient", produces = "application/json")//produces: trả về kết quả dạng Json
-@CrossOrigin(origins = "*")//cho phép gọi API từ máy chủ khác localhost
+@RequestMapping(path = "/patient", produces = "application/json")
+@CrossOrigin(value = "*")
 public class PatientController {
-    private PatientRepository patientRepo;
+    private PatientRepository patientRepository;
     @Autowired
-    //EntityLinks entityLinks;
-    public PatientController(PatientRepository patientRepo) {
-        this.patientRepo = patientRepo;
+    public PatientController(PatientRepository patientRepository){
+        this.patientRepository = patientRepository;
     }
-    @GetMapping
-    public Iterable<Patient> getAllpatients() {
-        return patientRepo.findAll();
+    @RequestMapping(method = RequestMethod.GET)
+    public Iterable<Patient> getAllPatient(){
+        return patientRepository.findAll();
     }
-
-    /*@PathVarialble(“id”) cho biết id sẽ lấy từ đường dẫn
-    và sau đó được sử dụng trong phương thức như một tham số
-     */
-    //tìm kiếm theo id
-    @GetMapping("/{id}")
-    public Patient PatientById(@PathVariable("id") String id) {
-        Optional<Patient> optPatient = patientRepo.findById(id);
-        if (optPatient.isPresent()) {
-            return optPatient.get();
+    @RequestMapping(method = RequestMethod.GET, path = "/{id}")
+    public Patient getById(@PathVariable(value = "id", required = false)String id){
+        Optional<Patient> patient = patientRepository.findById(id);
+        if(patient.isPresent()){
+            return  patient.get();
         }
         return null;
-
     }
     @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable("id") String id){
         try {
-            patientRepo.deleteById(id);
+            patientRepository.deleteById(id);
         }catch(EmptyResultDataAccessException e){
         }
     }
-
-    @PostMapping(consumes = "application/json")
+    @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public Patient postPatient(@RequestBody Patient patient) {
-        return patientRepo.save(patient);
+    public Patient savePatient(@RequestBody Patient patient){
+        return patientRepository.save(patient);
     }
 }

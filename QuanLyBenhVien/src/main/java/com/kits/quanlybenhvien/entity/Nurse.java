@@ -22,7 +22,7 @@ public class Nurse {
     @NotNull
     private String nameNurse;
     @NotNull
-    private Date DOB;
+    private String DOB;
     @NotNull
     private String address;
     @NotNull

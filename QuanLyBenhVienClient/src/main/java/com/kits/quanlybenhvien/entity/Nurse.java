@@ -12,7 +12,7 @@ public class Nurse {
     private String ID_Nurse;
     private String identityNumber;
     private String nameNurse;
-    private Date DOB;
+    private String DOB;
     private String address;
     private int exp;
     private String diploma;

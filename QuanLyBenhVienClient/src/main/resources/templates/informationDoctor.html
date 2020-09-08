@@ -1,45 +1,90 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Information Doctor</title>
-</head>
-<body>
-<h1>Information Doctor</h1>
-<form method="get " th:action="@{/}" action="#">
-    <div>
-        <input/>
-        <button></button>
-    </div>
-    <div>
-        <table cellpadding="5" border="1" th:object="${doctors}">
-            <tr>
-                <td align="right"><label for="id">ID</label></td>
-                <td align="right"><label for="identity">IdentityNo</label></td>
-                <td align="right"><label for="name">Name</label></td>
-                <td align="right"><label for="dob">DOB</label></td>
-                <td align="right"><label for="address">Address</label></td>
-                <td align="right"><label for="exp">Experience</label></td>
-                <td align="right"><label for="diploma">Diploma</label></td>
-                <td align="right"><label for="field">Field</label></td>
-                <td align="right"><label for="position">Position</label></td>
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+        <script th:src="@{/js/jquery.min.js}"></script>
+        <script th:src="@{/js/bootstrap.min.js}"></script>
+        <link rel="stylesheet" th:href="@{/font-awesome/css/font-awesome.min.css}">
+        <link rel="stylesheet" th:href="@{/styles.css}">
 
-            </tr>
-            <tr th:each="doctor:${doctors}">
-                <td align="left"><label th:text="${doctor.ID_Doctor}"></label></td>
-                <td align="left"><label th:text="${doctor.identityNumber}"></label></td>
-                <td align="left"><label th:text="${doctor.nameDoctor}"></label></td>
-                <td align="left"><label th:text="${doctor.DOB}"></label></td>
-                <td align="left"><label th:text="${doctor.address}"></label></td>
-                <td align="left"><label th:text="${doctor.exp}"></label></td>
-                <td align="left"><label th:text="${doctor.diploma}"></label></td>
-                <td align="left"><label th:text="${doctor.field}"></label></td>
-                <td align="left"><label th:text="${doctor.position}"></label></td>
-            </tr>
-        </table>
-    </div>
-</form>
-<h2><a th:href="@{/doctor/add}" href="#">Add new Doctor</a></h2>
-</body>
+        <title>Doctors List</title>
+    </head>
+
+    <body>
+        <!-- Navigation -->
+        <div class="container menu-nav text-white" th:replace="~{fragments/navigation :: navigation}">
+        </div><!-- /.navigation -->
+
+        <div class="container">
+            <div class="page-content">
+                <div class="col-md-12">
+                    <div class="row child-padding-none">
+                        <div class="col-md-8">
+                            <h2 class="widget-title">Doctors List</h2>
+                        </div>
+                        <div class="col-md-4">
+                            <!-- Search -->
+                            <form class="search-form" method="post" action="#" th:action="@{/doctor/search}">
+                                <div class="form-group">
+                                    <label for="search">
+                                        <input type="search" class="form-control" id="search" placeholder="Search for doctor">
+                                    </label>
+                                </div>
+                            </form><!-- /.search -->
+                        </div>
+                        <div class="divider"></div>
+                    </div>
+                    <div class="row child-padding-none">
+                        <div class="col-md-4">
+                            <button class="btn btn-primary"><a href="#" th:href="@{/doctor/add}"><i class="fa fa-plus"></i> New Doctor</a></button>
+                        </div>
+                        <div class="col-md-8 text-right">
+                            <div class="alert alert-danger" th:text="${warning}" role="alert"></div>
+                        </div>
+                    </div>
+                    <!-- Lists -->
+                    <div class="row">
+                        <table cellpadding="5" th:object="${doctors}" class="table table-bordered table-striped dataTable no-footer">
+                            <thead>
+                                <tr role="row">
+                                    <th>ID</th>
+                                    <th>Identity No</th>
+                                    <th>Name</th>
+                                    <th>Date of Birth</th>
+                                    <th>Address</th>
+                                    <th>Exp.</th>
+                                    <th>Diploma</th>
+                                    <th>Field</th>
+                                    <th>Position</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                            <tbody>
+                                <tr th:each="doctor:${doctors}">
+                                    <td th:text="${doctor.ID_Doctor}"></td>
+                                    <td th:text="${doctor.identityNumber}"></td>
+                                    <td th:text="${doctor.nameDoctor}"></td>
+                                    <td th:text="${doctor.DOB}"></td>
+                                    <td th:text="${doctor.address}"></td>
+                                    <td th:text="${doctor.exp}"></td>
+                                    <td th:text="${doctor.diploma}"></td>
+                                    <td th:text="${doctor.field}"></td>
+                                    <td th:text="${doctor.position}"></td>
+                                    <td class="text-center"><a href="#" th:href="@{/doctor/edit/{id}(id=${doctor.ID_Doctor})}">
+                                        <i class="fa fa-edit fa-lg text-info"></i>
+                                    </a></td>
+                                    <td class="text-center"><a href="#" th:href="@{/doctor/delete/{id}(id=${doctor.ID_Doctor})}">
+                                        <i class="fa fa-trash fa-lg text-danger"></i>
+                                    </a></td>
+                                </tr>
+                                </tbody>
+                        </table>
+                    </div><!-- /.lists -->
+
+                </div>
+            </div>
+        </div>
+    </body>
 </html>

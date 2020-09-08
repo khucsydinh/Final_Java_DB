@@ -23,22 +23,22 @@ public class DoctorController {
         return doctorRepository.findAll();
     }
     @GetMapping("/{id}")
-    public Doctor doctorById(@PathVariable("id") String ID_Doctor){
-        Optional<Doctor> optionalDoctor = doctorRepository.findById(ID_Doctor);
+    public Doctor doctorById(@PathVariable(value = "id", required = false) String id){
+        Optional<Doctor> optionalDoctor = doctorRepository.findById(id);
         if(optionalDoctor.isPresent()){
             return optionalDoctor.get();
         }
         return null;
     }
     @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable("id") String ID_Doctor){
+    public void delete(@PathVariable(value = "id", required = false) String ID_Doctor){
         try {
             doctorRepository.deleteById(ID_Doctor);
         }catch (EmptyResultDataAccessException e){}
     }
     @PostMapping(consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    public Doctor postDoctor(@RequestBody Doctor doctor){
+    public Doctor saveDoctor(@RequestBody Doctor doctor){
         return doctorRepository.save(doctor);
     }
 }

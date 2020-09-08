@@ -1,8 +1,8 @@
 package com.kits.quanlybenhvien.repository;
 
-import org.springframework.data.repository.CrudRepository;
 import com.kits.quanlybenhvien.entity.Patient;
+import org.springframework.data.repository.CrudRepository;
 
 public interface PatientRepository extends CrudRepository<Patient,String> {
-}
 
+}

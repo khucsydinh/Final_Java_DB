@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head><title>Add diseaseExamine</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
+</head>
+<body>
+<form method="POST" th:action="@{/diseaseExamine}" action="" th:object="${diseaseExamine}">
+    <h1>Add a new diseaseExamine Schedule!</h1>
+    <h3>Input the diseaseExamine information ...</h3>
+    <table cellspacing="5" border="0">
+
+        <tr>
+            <td align="right"><label for="ID_Examination">ID Examination</label></td>
+            <td align="right"><input name="ID_Examination" type="text" th:field="*{IDExamination}"/></td>
+        </tr>
+        <tr>
+            <td align="right"><label for="ID_DoctorExamination">ID Doctor Examination</label></td>
+            <td align="right"><input name="ID_DoctorExamination" type="text" th:field="*{ID_DoctorExamination}"/></td>
+        <tr>
+            <td align="right"><label for="ID_Patient">ID Patient</label></td>
+            <td align="right"><input name="ID_Patient" type="text" th:field="*{IDPatient}"/></td>
+        </tr>
+        <tr>
+            <td align="right"><label for="nameDisease">Name Disease</label></td>
+            <td align="right"><input name="nameDisease" type="text" th:field="*{nameDisease}"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><br><input type="submit" value="Submit"></td>
+        </tr>
+    </table>
+
+</form>
+</body>
+</html>

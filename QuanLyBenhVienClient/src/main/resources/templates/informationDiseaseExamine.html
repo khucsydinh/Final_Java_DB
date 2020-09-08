@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Information diseaseExamine</title>
+</head>
+<body>
+<h1>Information diseaseExamine</h1>
+<form method="get " th:action="@{/diseaseExamine/search}" action="#">
+    <div>
+        <input name="id" type="text" placeholder="Search Id..."/>
+        <button>Search</button>
+    </div>
+    <div>
+        <table cellpadding="5" border="1" th:object="${diseaseExamines}">
+            <tr>
+                <td align="right"><label for="ID_Examination">ID Examination</label></td>
+                <td align="right"><label for="ID_DoctorExamination">ID Doctor Examination</label></td>
+                <td align="right"><label for="ID_Patient">ID Patient</label></td>
+                <td align="right"><label for="nameDisease">Name Disease</label></td>
+                <td align="right"><label for="delete">Delete</label></td>
+                <td align="right"><label for="edit">Edit</label></td>
+            </tr>
+            <tr th:each="diseaseExamine:${diseaseExamines}">
+                <td align="left"><label th:text="${diseaseExamine.IDExamination}"></label></td>
+                <td align="left"><label th:text="${diseaseExamine.ID_DoctorExamination}"></label></td>
+                <td align="left"><label th:text="${diseaseExamine.IDPatient}"></label></td>
+                <td align="left"><label th:text="${diseaseExamine.nameDisease}"></label></td>
+                <td><a href="#" th:href="@{/diseaseExamine/delete/{id}/{id2}/{id3}/{id4}(id=${diseaseExamine.IDExamination},id2=${diseaseExamine.ID_DoctorExamination},id3=${diseaseExamine.IDPatient},id4=${diseaseExamine.nameDisease})}">Delete</a></td>
+                <td><a href="#" th:href="@{/diseaseExamine/edit/{id}/{id2}/{id3}/{id4}(id=${diseaseExamine.IDExamination},id2=${diseaseExamine.ID_DoctorExamination},id3=${diseaseExamine.IDPatient},id4=${diseaseExamine.nameDisease})}">Edit</a></td>
+            </tr>
+        </table>
+    </div>
+</form>
+<h2><a th:href="@{/diseaseExamine/add}" href="#">Add new diseaseExamine</a></h2>
+</body>
+</html>
