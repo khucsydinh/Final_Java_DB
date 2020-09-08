@@ -34,7 +34,7 @@ public class PatientController {
     public String addPatient(@RequestParam(value = "ID_Patient",required = false) String id,
                              @RequestParam(value = "identityNumber",required = false)String identity,
                              @RequestParam(value = "namePatient",required = false)String name,
-                             @RequestParam(value = "DOB",required = false) @DateTimeFormat(pattern="yyyy-MM-dd") Date dob,
+                             @RequestParam(value = "DOB",required = false) String dob,
                              @RequestParam(value = "address",required = false)String address,
                              @RequestParam(value = "phone",required = false)String phone){
         Patient patient = new Patient();

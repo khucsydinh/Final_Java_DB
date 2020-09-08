@@ -8,8 +8,8 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor(force = true)
 public class DiseaseExamine  {
-    Integer ID_Examination;
+    Integer IDExamination;
     String ID_DoctorExamination;
-    String ID_Patient;
+    String IDPatient;
     String nameDisease;
 }

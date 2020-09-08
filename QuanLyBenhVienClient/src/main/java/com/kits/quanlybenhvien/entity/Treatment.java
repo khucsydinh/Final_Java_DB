@@ -18,9 +18,8 @@ public class Treatment {
     private String ID_DoctorCure;
     private String IDPatient;
     private String ID_Nurse;
-    private List<Med> medList = new ArrayList<>();
-    private List<Service> serviceList = new ArrayList<>();
-    private Date atTime;
-    private boolean status;
+
+    private String atTime;
+    private String status;
 
 }

@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 @Data
 @RequiredArgsConstructor
-@IdClass(ExaminationKey.class)
+@IdClass(TreatmentKey.class)
 public class Treatment extends TreatmentKey{
     @Id
     @Column(name = "ID_Treatment")
@@ -34,6 +34,6 @@ public class Treatment extends TreatmentKey{
     @Column(name = "ID_Nurse")
     String ID_Nurse;
 
-    private Date atTime;
-    private boolean status;
+    private String atTime;
+    private String status;
 }

@@ -31,14 +31,14 @@ public class DiseaseExamineController {
         return "formAddDiseaseExamine";
     }
     @PostMapping
-    public String addDiseaseExamine(@RequestParam(value = "ID_Examination",required = false) int ID_Examination,
+    public String addDiseaseExamine(@RequestParam(value = "ID_Examination",required = false) Integer ID_Examination,
                                     @RequestParam(value = "ID_DoctorExamination",required = false)String ID_DoctorExamination,
                                     @RequestParam(value = "ID_Patient",required = false)String ID_Patient,
                                     @RequestParam(value = "nameDisease",required = false)String nameDisease){
         DiseaseExamine diseaseExamine = new DiseaseExamine();
-        diseaseExamine.setID_Examination(ID_Examination);
+        diseaseExamine.setIDExamination(ID_Examination);
         diseaseExamine.setID_DoctorExamination(ID_DoctorExamination);
-        diseaseExamine.setID_Patient(ID_Patient);
+        diseaseExamine.setIDPatient(ID_Patient);
         diseaseExamine.setNameDisease(nameDisease);
 
         log.info("New"+diseaseExamine);
@@ -46,7 +46,7 @@ public class DiseaseExamineController {
         return "redirect:/diseaseExamine";
     }
     @GetMapping("/delete/{id}/{id2}/{id3}/{id4}")
-    public String deleteDiseaseExamine(@PathVariable(value = "id",required = false) int id,
+    public String deleteDiseaseExamine(@PathVariable(value = "id",required = false) String id,
                                        @PathVariable(value = "id2",required = false) String id2,
                                        @PathVariable(value = "id3",required = false) String id3,
                                        @PathVariable(value = "id4",required = false) String id4,
@@ -57,15 +57,34 @@ public class DiseaseExamineController {
         return "informationDiseaseExamine";
     }
     @GetMapping("/edit/{id}/{id2}/{id3}/{id4}")
-    public String editDiseaseExamine(@PathVariable(value = "id",required = false) int id,
+    public String editDiseaseExamine(@PathVariable(value = "id",required = false) String id,
                                      @PathVariable(value = "id2",required = false) String id2,
                                      @PathVariable(value = "id3",required = false) String id3,
                                      @PathVariable(value = "id4",required = false) String id4,
                                      Model model){
         DiseaseExamine diseaseExamine = rest.getForObject("http://localhost:8081/diseaseExamine/{id}/{id2}/{id3}/{id4}",DiseaseExamine.class,id,id2,id3,id4);
         model.addAttribute("diseaseExamine",diseaseExamine);
-        return "formAddDiseaseExamine";
+        return "formUpdateDiseaseExamine";
     }
+
+
+    @PostMapping("/edit/{id}/{id2}/{id3}/{id4}")
+    public String updateDiseaseExamine( @PathVariable(value = "id",required = false) Integer id,
+                                        @PathVariable(value = "id2",required = false) String id2,
+                                        @PathVariable(value = "id3",required = false) String id3,
+                                        @PathVariable(value = "id4",required = false) String id4,DiseaseExamine diseaseExamine){
+        rest.delete("http://localhost:8081/diseaseExamine/delete/{id}/{id2}/{id3}/{id4}",id,id2,id3,id4);
+
+        diseaseExamine.setIDExamination(id);
+        diseaseExamine.setID_DoctorExamination(id2);
+        diseaseExamine.setIDPatient(id3);
+
+        rest.postForObject("http://localhost:8081/diseaseExamine",diseaseExamine,DiseaseExamine.class);
+
+        return "redirect:/diseaseExamine";
+    }
+
+
     @GetMapping("/search")
     public String search(@RequestParam(value = "id",required = false) String id,Model model){
         DiseaseExamine diseaseExamine = rest.getForObject("http://localhost:8081/diseaseExamine/{id}", DiseaseExamine.class,id);

@@ -14,13 +14,13 @@ import java.io.Serializable;
 public class DiseaseExamine extends DiseaseExamineKey {
     @Id
     @Column(name = "ID_Examination")
-    Integer ID_Examination;
+    Integer IDExamination;
     @Id
     @Column(name = "ID_Doctor_Examination")
     String ID_DoctorExamination;
     @Id
     @Column(name = "ID_Patient")
-    String ID_Patient;
+    String IDPatient;
     @Id
     @Column(name = "Name_Disease")
     String nameDisease;

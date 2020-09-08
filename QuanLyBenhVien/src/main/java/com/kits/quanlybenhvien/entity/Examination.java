@@ -20,5 +20,5 @@ public class Examination extends ExaminationKey{
     @Id
     @Column(name = " ID_Patient")
     String IDPatient;
-    private Date atTime;
+    private String atTime;
 }

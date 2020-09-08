@@ -1,0 +1,36 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head><title>Edit Treatment</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
+</head>
+<body>
+<form method="POST" th:action="@{/treatment/edit/{id}/{id2}/{id3}/{id4}/{id5}/{id6}/{id7}
+                (id=${treatment.ID_Treatment},
+                id2=${treatment.IDExamination},
+                id3=${treatment.nameDisease},
+                id4=${treatment.ID_DoctorExamination},
+                id5=${treatment.ID_DoctorCure},
+                id6=${treatment.IDPatient},
+                id7=${treatment.ID_Nurse})}"  th:object="${treatment}">
+    <h1>Edit this Treatment Schedule!</h1>
+    <h3>Input the Treatment information ...</h3>
+    <table cellspacing="5" border="0">
+        <tr>
+            <td align="right"><label for="atTime">At Time: </label></td>
+            <td align="right"><input name="atTime" type="text" th:field="*{atTime}"/></td>
+        </tr>
+        <tr>
+            <td align="right"><label for="status">Status: </label></td>
+            <td align="right"><input name="atTime" type="text" th:field="*{status}"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><br><input type="submit" value="Submit"></td>
+        </tr>
+    </table>
+
+</form>
+</body>
+</html>

@@ -1,5 +1,6 @@
 package com.kits.quanlybenhvien.web;
 
+import com.kits.quanlybenhvien.entity.Examination;
 import com.kits.quanlybenhvien.entity.Med;
 import com.kits.quanlybenhvien.entity.Service;
 import com.kits.quanlybenhvien.entity.Treatment;
@@ -33,16 +34,14 @@ public class TreatmentController {
         return "formAddTreatment";
     }
     @PostMapping
-    public String addTreatment(@RequestParam(value = "IDExamination",required = false) int IDExamination,
-                               @RequestParam(value = "Name_Disease",required = false)String nameDisease,
+    public String addTreatment(@RequestParam(value = "IDExamination",required = false) Integer IDExamination,
+                               @RequestParam(value = "nameDisease",required = false)String nameDisease,
                                @RequestParam(value = "ID_DoctorExamination",required = false)String ID_DoctorExamination,
                                @RequestParam(value = "ID_DoctorCure",required = false)String ID_DoctorCure,
                                @RequestParam(value = "IDPatient",required = false)String IDPatient,
                                @RequestParam(value = "ID_Nurse",required = false)String ID_Nurse,
-                               @RequestParam(value = "medList",required = false)List<Med> medList,
-                               @RequestParam(value = "serviceList",required = false)List<Service> serviceList,
-                               @RequestParam(value = "atTime",required = false)Date atTime,
-                               @RequestParam(value = "status",required = false)boolean status){
+                               @RequestParam(value = "atTime",required = false)String atTime,
+                               @RequestParam(value = "status",required = false)String status){
         Treatment treatment = new Treatment();
         treatment.setIDExamination(IDExamination);
         treatment.setNameDisease(nameDisease);
@@ -50,8 +49,6 @@ public class TreatmentController {
         treatment.setID_DoctorCure(ID_DoctorCure);
         treatment.setIDPatient(IDPatient);
         treatment.setID_Nurse(ID_Nurse);
-        treatment.setMedList(medList);
-        treatment.setServiceList(serviceList);
         treatment.setAtTime(atTime);
         treatment.setStatus(status);
 
@@ -60,21 +57,40 @@ public class TreatmentController {
         return "redirect:/treatment";
     }
 
-    @GetMapping("/edit/{id}/{id2}/{id3}/{id4}/{id5}/{id6}/{id7}/{id8}/{id9}/{id10}")
-    public String editTreatment(@PathVariable(value = "id",required = false) int id,
-                                @PathVariable(value = "id2",required = false) String id2,
+    @GetMapping("/edit/{id}/{id2}/{id3}/{id4}/{id5}/{id6}/{id7}")
+    public String editTreatment(@PathVariable(value = "id",required = false) Integer id,
+                                @PathVariable(value = "id2",required = false) Integer id2,
                                 @PathVariable(value = "id3",required = false) String id3,
                                 @PathVariable(value = "id4",required = false) String id4,
                                 @PathVariable(value = "id5",required = false) String id5,
                                 @PathVariable(value = "id6",required = false) String id6,
-                                @PathVariable(value = "id7",required = false) List<Med> id7,
-                                @PathVariable(value = "id8",required = false) List<Service> id8,
-                                @PathVariable(value = "id9",required = false) Date id9,
-                                @PathVariable(value = "id10",required = false) boolean id10,
+                                @PathVariable(value = "id7",required = false) String id7,
                                 Model model){
-        Treatment treatment = rest.getForObject("http://localhost:8081/treatment/{id}/{id2}/{id3}/{id4}/{id5}/{id6}/{id7}/{id8}/{id9}/{id10}",Treatment.class,id,id2,id3,id4,id5,id6,id7,id8,id9,id10);
+        Treatment treatment = rest.getForObject("http://localhost:8081/treatment/{id}/{id2}/{id3}/{id4}/{id5}/{id6}/{id7}",Treatment.class,id,id2,id3,id4,id5,id6,id7);
         model.addAttribute("treatment",treatment);
-        return "formAddTreatment";
+        return "formUpdateTreatment";
+    }
+
+    @PostMapping("/edit/{id}/{id2}/{id3}/{id4}/{id5}/{id6}/{id7}")
+    public String updateTreatment(@PathVariable(value = "id",required = false) Integer id,
+                                    @PathVariable(value = "id2",required = false) Integer id2,
+                                    @PathVariable(value = "id3",required = false) String id3,
+                                    @PathVariable(value = "id4",required = false) String id4,
+                                    @PathVariable(value = "id5",required = false) String id5,
+                                    @PathVariable(value = "id6",required = false) String id6,
+                                    @PathVariable(value = "id7",required = false) String id7, Treatment treatment){
+        treatment.setID_Treatment(id);
+        treatment.setIDExamination(id2);
+        treatment.setNameDisease(id3);
+        treatment.setID_DoctorExamination(id4);
+        treatment.setID_DoctorCure(id5);
+        treatment.setIDPatient(id6);
+        treatment.setID_Nurse(id7);
+
+
+        rest.postForObject("http://localhost:8081/treatment",treatment,Treatment.class);
+
+        return "redirect:/treatment";
     }
     @GetMapping("/search")
     public String search(@RequestParam(value = "id",required = false) String id,Model model){

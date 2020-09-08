@@ -34,7 +34,7 @@ public class ExaminationController {
     @PostMapping
     public String addExamination(@RequestParam(value = "ID_DoctorExamination",required = false)String ID_DoctorExamination,
                                  @RequestParam(value = "IDPatient",required = false)String IDPatient,
-                                 @RequestParam(value = "atTime",required = false) @DateTimeFormat(pattern="yyyy-MM-dd") Date atTime){
+                                 @RequestParam(value = "atTime",required = false) String atTime){
         Examination examination = new Examination();
         examination.setID_DoctorExamination(ID_DoctorExamination);
         examination.setIDPatient(IDPatient);
@@ -45,7 +45,7 @@ public class ExaminationController {
         return "redirect:/examination";
     }
     @GetMapping("/delete/{id}/{id2}/{id3}")
-    public String deleteExamination(@PathVariable(value = "id",required = false) int id,
+    public String deleteExamination(@PathVariable(value = "id",required = false) Integer id,
                                     @PathVariable(value = "id2",required = false) String id2,
                                     @PathVariable(value = "id3",required = false) String id3,
                                     Model model){
@@ -55,13 +55,25 @@ public class ExaminationController {
         return "informationExamination";
     }
     @GetMapping("/edit/{id}/{id2}/{id3}")
-    public String editExamination(@PathVariable(value = "id",required = false) int id,
+    public String editExamination(@PathVariable(value = "id",required = false) Integer id,
                                   @PathVariable(value = "id2",required = false) String id2,
                                   @PathVariable(value = "id3",required = false) String id3,
                                   Model model){
-        Examination examination = rest.getForObject("http://localhost:8081/examination/{id}/{id2}/{id3}",Examination.class,id,id2,id3);
+        Examination examination = rest.getForObject("http://localhost:8081/examination/edit/{id}/{id2}/{id3}",Examination.class,id,id2,id3);
         model.addAttribute("examination",examination);
-        return "formAddExamination";
+
+        return "formUpdateExamination";
+    }
+    @PostMapping("/edit/{id}/{id2}/{id3}")
+    public String updateExamination( @PathVariable(value = "id",required = false) Integer id,
+                                     @PathVariable(value = "id2",required = false) String id2,
+                                     @PathVariable(value = "id3",required = false) String id3,Examination examination){
+        examination.setIDExamination(id);
+        examination.setID_DoctorExamination(id2);
+        examination.setIDPatient(id3);
+        rest.postForObject("http://localhost:8081/examination",examination,Examination.class);
+
+        return "redirect:/examination";
     }
     @GetMapping("/search")
     public String search(@RequestParam(value = "id",required = false) int id,Model model){

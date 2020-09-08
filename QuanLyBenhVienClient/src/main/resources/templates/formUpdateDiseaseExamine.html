@@ -1,0 +1,25 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head><title>Edit diseaseExamine</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
+</head>
+<body>
+<form method="POST" th:action="@{/diseaseExamine/edit/{id}/{id2}/{id3}/{id4}(id=${diseaseExamine.IDExamination},id2=${diseaseExamine.ID_DoctorExamination},id3=${diseaseExamine.IDPatient},id4=${diseaseExamine.nameDisease})}"  th:object="${diseaseExamine}">
+    <h1>Edit this diseaseExamine Schedule!</h1>
+    <h3>Input the diseaseExamine information ...</h3>
+    <table cellspacing="5" border="0">
+        <tr>
+            <td align="right"><label for="nameDisease">Name Disease: </label></td>
+            <td align="right"><input name="nameDisease" type="text" th:field="*{nameDisease}"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><br><input type="submit" value="Submit"></td>
+        </tr>
+    </table>
+
+</form>
+</body>
+</html>

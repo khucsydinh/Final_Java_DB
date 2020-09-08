@@ -12,8 +12,8 @@ import java.io.Serializable;
 @Data
 @RequiredArgsConstructor
 public class DiseaseExamineKey implements Serializable {
-    Integer ID_Examination;
+    Integer IDExamination;
     String ID_DoctorExamination;
-    String ID_Patient;
+    String IDPatient;
     String nameDisease;
 }

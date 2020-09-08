@@ -6,9 +6,12 @@ import com.kits.quanlybenhvien.entity.ExaminationKey;
 import com.kits.quanlybenhvien.repository.ExaminationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.Optional;
 
 @RestController
@@ -55,4 +58,16 @@ public class ExaminationController {
     public Examination saveExamination(@RequestBody Examination examination){
         return examinationRepository.save(examination);
     }
+    @GetMapping("/edit/{id}/{id2}/{id3}")
+    public Optional<Examination> updateExamination (@PathVariable(value = "id", required = false) Integer id,
+                                                    @PathVariable(value = "id2", required = false) String id2,
+                                                    @PathVariable(value = "id3", required = false) String id3){
+        ExaminationKey examinationKey = new ExaminationKey();
+        examinationKey.setIDExamination(id);
+        examinationKey.setID_DoctorExamination(id2);
+        examinationKey.setIDPatient(id3);
+        Optional<Examination> examination = examinationRepository.findById(examinationKey);
+        return examination;
+    }
+
 }

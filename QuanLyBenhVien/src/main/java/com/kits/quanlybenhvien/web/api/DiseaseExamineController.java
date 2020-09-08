@@ -32,9 +32,9 @@ public class DiseaseExamineController {
                                              @PathVariable(value = "id3", required = false) String id3,
                                              @PathVariable(value = "id4", required = false) String id4){
         DiseaseExamineKey diseaseExamineKey = new DiseaseExamineKey();
-        diseaseExamineKey.setID_Examination(id);
+        diseaseExamineKey.setIDExamination(id);
         diseaseExamineKey.setID_DoctorExamination(id2);
-        diseaseExamineKey.setID_Patient(id3);
+        diseaseExamineKey.setIDPatient(id3);
         diseaseExamineKey.setNameDisease(id4);
         Optional<DiseaseExamine> optionalDiseaseExamine = diseaseExamineRepository.findById(diseaseExamineKey);
         if(optionalDiseaseExamine.isPresent()){
@@ -48,9 +48,9 @@ public class DiseaseExamineController {
                        @PathVariable(value = "id3", required = false) String id3,
                        @PathVariable(value = "id4", required = false) String id4){
         DiseaseExamineKey diseaseExamineKey = new DiseaseExamineKey();
-        diseaseExamineKey.setID_Examination(id);
+        diseaseExamineKey.setIDExamination(id);
         diseaseExamineKey.setID_DoctorExamination(id2);
-        diseaseExamineKey.setID_Patient(id3);
+        diseaseExamineKey.setIDPatient(id3);
         diseaseExamineKey.setNameDisease(id4);
         try {
             diseaseExamineRepository.deleteById(diseaseExamineKey);
@@ -60,5 +60,18 @@ public class DiseaseExamineController {
     @ResponseStatus(HttpStatus.CREATED)
     public DiseaseExamine saveDiseaseExamine(@RequestBody DiseaseExamine diseaseExamine){
         return diseaseExamineRepository.save(diseaseExamine);
+    }
+    @GetMapping("/edit/{id}/{id2}/{id3}/{id4}")
+    public Optional<DiseaseExamine> updateDiseaseExamine (@PathVariable(value = "id", required = false) Integer id,
+                                                          @PathVariable(value = "id2", required = false) String id2,
+                                                          @PathVariable(value = "id3", required = false) String id3,
+                                                          @PathVariable(value = "id4", required = false) String id4){
+        DiseaseExamineKey diseaseExamineKey = new DiseaseExamineKey();
+        diseaseExamineKey.setIDExamination(id);
+        diseaseExamineKey.setID_DoctorExamination(id2);
+        diseaseExamineKey.setIDPatient(id3);
+        diseaseExamineKey.setNameDisease(id4);
+        Optional<DiseaseExamine> diseaseExamine = diseaseExamineRepository.findById(diseaseExamineKey);
+        return diseaseExamine;
     }
 }

@@ -3,10 +3,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Information treatment</title>
+    <title>Information Treatment</title>
 </head>
 <body>
-<h1>Information treatment</h1>
+<h1>Information Treatment</h1>
 <form method="get " th:action="@{/treatment/search}" action="#">
     <div>
         <input name="id" type="text" placeholder="Search Id..."/>
@@ -24,7 +24,6 @@
                 <td align="right"><label for="ID_Nurse">ID Nurse</label></td>
                 <td align="right"><label for="AtTime">At Time</label></td>
                 <td align="right"><label for="status">Status</label></td>
-                <td align="right"><label for="edit">Edit</label></td>
             </tr>
             <tr th:each="treatment:${treatments}">
                 <td align="left"><label th:text="${treatment.ID_Treatment}"></label></td>
@@ -38,7 +37,6 @@
                 <td align="left"><label th:text="${treatment.status}"></label></td>
 
 
-                <td align="left"><label th:text="${treatment.atTime}"></label></td>
                 <td><a href="#" th:href="@{/treatment/edit/{id}/{id2}/{id3}/{id4}/{id5}/{id6}/{id7}
                 (id=${treatment.ID_Treatment},
                 id2=${treatment.IDExamination},
