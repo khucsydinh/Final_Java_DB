@@ -1,147 +1,88 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-        <script th:src="@{/js/jquery.min.js}"></script>
-        <script th:src="@{/js/bootstrap.min.js}"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" th:href="@{/styles.css}">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/font-awesome/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/styles.css}">
 
-        <title>Nurses List</title>
-    </head>
+    <title>Nurses List</title>
+</head>
 
-    <body>
-        <!--Navigation-->
-        <div class="container menu-nav text-white">
-            <nav class="navbar navbar-expand-lg ktisclinic-bg ">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="ti-menu text-white"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-wheelchair"></i> Patients</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" th:href="@{/patient}">All Patients</a>
-                                <a class="dropdown-item" th:href="@{/patient/add}">Add Patient</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-user-md"></i> Doctors</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" th:href="@{/doctor}">All Doctors</a>
-                                <a class="dropdown-item" th:href="@{/doctor/add}">Add Doctor</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-stethoscope"></i> Examinations</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" th:href="@{/}">All Examinations</a>
-                                <a class="dropdown-item" th:href="@{/}">Add Examination</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-plus-square"></i> Treatments</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" th:href="@{/}">All Treatments</a>
-                                <a class="dropdown-item" th:href="@{/}">Add Treatment</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-plus-square"></i> Services</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" th:href="@{/}">All Services</a>
-                                <a class="dropdown-item" th:href="@{/}">Add Service</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown active">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-heartbeat"></i> Nurses</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" th:href="@{/nurse}">All Nurses</a>
-                                <a class="dropdown-item" th:href="@{/nurse/add}">Add Nurse</a>
-                            </div>
-                        </li>
+<body>
+<!-- Navigation -->
+<div class="container menu-nav text-white" th:replace="~{fragments/navigation :: navigation}">
+</div><!-- /.navigation -->
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-medkit"></i> Medicines</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" th:href="@{/}">All Medicines</a>
-                                <a class="dropdown-item" th:href="@{/}">Add Medicine</a>
-                            </div>
-                        </li>
-
-                    </ul>
+<div class="container">
+    <div class="page-content">
+        <div class="col-md-12">
+            <div class="row child-padding-none">
+                <div class="col-md-8">
+                    <h2 class="widget-title">Nurses List</h2>
                 </div>
-            </nav>
-        </div>
-        <!--#Navigation-->
-
-        <div class="container">
-            <div class="page-content">
-                <div class="col-md-12">
-                    <div class="row">
-                        <h3 class="widget-title">Nurses List</h3>
-                    </div>
-                    <div class="row table-data">
-                        <div class="col-md-8">
+                <div class="col-md-4">
+                    <!-- Search -->
+                    <form class="search-form" method="post" action="#" th:action="@{/nurse/search}">
+                        <div class="form-group">
+                            <label for="search">
+                                <input type="search" class="form-control" id="search" placeholder="Search for nurse...">
+                            </label>
                         </div>
-                        <div class="col-md-4">
-                            <form class="search-form" method="get" th:action="@{/nurse/search}">
-                                <div class="form-group">
-                                    <label for="search">Search:
-                                        <input type="search" class="form-control" id="search">
-                                    </label>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <table cellpadding="5" th:object="${nurses}" class="table table-bordered table-striped dataTable no-footer">
-                            <thead>
-                            <tr role="row">
-                                <th>ID</th>
-                                <th>Identity No.</th>
-                                <th>Name</th>
-                                <th>Date of Birth</th>
-                                <th>Address</th>
-                                <th>Exp.</th>
-                                <th>Diploma</th>
-                                <th>Phone</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
-                            </tr>
-                            <tbody>
-                                <tr th:each="nurse:${nurses}">
-                                    <td th:text="${nurse.ID_Nurse}"></td>
-                                    <td th:text="${nurse.identityNumber}"></td>
-                                    <td th:text="${nurse.nameNurse}"></td>
-                                    <td th:text="${nurse.DOB}"></td>
-                                    <td th:text="${nurse.address}"></td>
-                                    <td th:text="${nurse.exp}"></td>
-                                    <td th:text="${nurse.diploma}"></td>
-                                    <td th:text="${nurse.phone}"></td>
-                                    <td class="text-center"><a th:href="@{/nurse/edit/{ID_Nurse}(ID_Nurse=${nurse.ID_Nurse})}">
-                                        <i class="fa fa-edit fa-lg text-info"></i>
-                                    </a></td>
-                                    <td class="text-center"><a th:href="@{/nurse/delete/{ID_Nurse}(ID_Nurse=${nurse.ID_Nurse})}">
-                                        <i class="fa fa-trash fa-lg text-danger"></i>
-                                    </a></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
+                    </form><!-- /.search -->
+                </div>
+                <div class="divider"></div>
+            </div>
+            <div class="row child-padding-none">
+                <div class="col-md-4">
+                    <button class="btn btn-primary"><a href="#" th:href="@{/nurse/add}"><i class="fa fa-plus"></i> New Nurse</a></button>
+                </div>
+                <div class="col-md-8 text-right">
+                    <div class="alert alert-danger" th:text="${warning}" role="alert"></div>
                 </div>
             </div>
+            <!-- Lists -->
+            <div class="row">
+                <table cellpadding="5" th:object="${nurses}" class="table table-bordered table-striped dataTable no-footer">
+                    <thead>
+                    <tr role="row">
+                        <th>ID</th>
+                        <th>Identity No</th>
+                        <th>Name</th>
+                        <th>Date of Birth</th>
+                        <th>Address</th>
+                        <th>Exp.</th>
+                        <th>Diploma</th>
+                        <th>Phone</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                    <tbody>
+                    <tr th:each="nurse:${nurses}">
+                        <td th:text="${nurse.ID_Nurse}"></td>
+                        <td th:text="${nurse.identityNumber}"></td>
+                        <td th:text="${nurse.nameNurse}"></td>
+                        <td th:text="${nurse.DOB}"></td>
+                        <td th:text="${nurse.address}"></td>
+                        <td th:text="${nurse.exp}"></td>
+                        <td th:text="${nurse.diploma}"></td>
+                        <td th:text="${nurse.phone}"></td>
+                        <td class="text-center"><a href="#" th:href="@{/nurse/edit/{id}(id=${nurse.ID_Nurse})}">
+                            <i class="fa fa-edit fa-lg text-info"></i>
+                        </a></td>
+                        <td class="text-center"><a href="#" th:href="@{/nurse/delete/{id}(id=${nurse.ID_Nurse})}">
+                            <i class="fa fa-trash fa-lg text-danger"></i>
+                        </a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div><!-- /.lists -->
+
         </div>
-    </body>
+    </div>
+</div>
+</body>
 </html>
