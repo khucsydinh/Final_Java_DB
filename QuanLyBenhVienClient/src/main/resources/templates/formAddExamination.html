@@ -1,31 +1,53 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head><title>Add Examination</title>
-    <link rel="stylesheet" th:href="@{/styles.css}"/>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/font-awesome/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/styles.css}">
+
+    <title>Add Examination</title>
 </head>
+
 <body>
-<form method="POST" th:action="@{/examination}" action="" th:object="${examination}">
-    <h1>Add a new Examination Schedule!</h1>
-    <h3>Input the Examination information ...</h3>
-    <table cellspacing="5" border="0">
+<!-- Navigation -->
+<div class="container menu-nav text-white" th:replace="~{fragments/navigation :: navigation}">
+</div><!-- /.navigation -->
 
-        <tr>
-            <td align="right"><label for="identity">ID Doctor Examination: </label></td>
-            <td align="right"><input name="identity" type="text" th:field="*{ID_DoctorExamination}"/></td>
-        </tr>
-        <tr>
-            <td align="right"><label for="name">ID Patient: </label></td>
-            <td align="right"><input name="name" type="text" th:field="*{IDPatient}"/></td>
-        <tr>
-            <td align="right"><label for="atTime">atTime: </label></td>
-            <td align="right"><input name="atTime" type="text" th:field="*{atTime}"/></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td><br><input type="submit" value="Submit"></td>
-        </tr>
-    </table>
+<div class="container">
+    <div class="page-content">
+        <div class="col-md-12">
+            <div class="row">
+                <h2 class="widget-title">New Examination</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="row">
+                <form method="POST" th:action="@{/examination}" action="" th:object="${examination}">
+                    <div class="form-row">
+                        <div class="form-group col-md-7">
+                            <label for="doctor-identity">Doctor Examination ID</label>
+                            <input type="text" class="form-control" th:field="*{ID_DoctorExamination}" name="doctor-identity">
+                        </div>
+                        <div class="form-group col-md-7">
+                            <label for="patient-id">Patient ID</label>
+                            <input type="text" class="form-control" th:field="*{IDPatient}" name="patient-id">
+                        </div>
+                        <div class="form-group col-md-7">
+                            <label for="atTime">Time</label>
+                            <input type="text" class="form-control" th:field="*{atTime}" name="atTime">
+                        </div>
+                    </div>
 
-</form>
+                    <button type="submit" class="btn-primary btn-lg btn">Add Examination</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

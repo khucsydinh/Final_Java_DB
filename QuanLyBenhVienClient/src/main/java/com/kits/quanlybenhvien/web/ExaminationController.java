@@ -49,7 +49,12 @@ public class ExaminationController {
                                     @PathVariable(value = "id2",required = false) String id2,
                                     @PathVariable(value = "id3",required = false) String id3,
                                     Model model){
-        rest.delete("http://localhost:8081/examination/delete/{id}/{id2}/{id3}",id,id2,id3);
+        try{
+            rest.delete("http://localhost:8081/examination/delete/{id}/{id2}/{id3}",id,id2,id3);
+        }catch (Exception e){
+            model.addAttribute("warning","Cannot delete! This examination is currently...");
+        }
+
         List<Examination> examinations = Arrays.asList(rest.getForObject("http://localhost:8081/examination",Examination[].class));
         model.addAttribute("examinations",examinations);
         return "informationExamination";
