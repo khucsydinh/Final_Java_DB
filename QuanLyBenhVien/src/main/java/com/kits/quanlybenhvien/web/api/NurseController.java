@@ -15,30 +15,30 @@ import java.util.Optional;
 public class NurseController {
     private NurseRepository nurseRepository;
     @Autowired
-    public NurseController(NurseRepository nurseRepository) {
+    public NurseController(NurseRepository nurseRepository){
         this.nurseRepository = nurseRepository;
     }
     @GetMapping
-    public Iterable<Nurse> getAllNurse() {
+    public Iterable<Nurse> getAllNurse(){
         return nurseRepository.findAll();
     }
     @GetMapping("/{id}")
-    public Nurse nurseById(@PathVariable("ID_Nurse") String ID_Nurse) {
-        Optional<Nurse> optionalNurse = nurseRepository.findById(ID_Nurse);
-        if(optionalNurse.isPresent()) {
+    public Nurse nurseById(@PathVariable(value = "id", required = false) String id){
+        Optional<Nurse> optionalNurse = nurseRepository.findById(id);
+        if(optionalNurse.isPresent()){
             return optionalNurse.get();
         }
         return null;
     }
-    @DeleteMapping("/deltete/{id}")
-    public void delete(@PathVariable("ID_Nurse") String ID_Nurse) {
+    @DeleteMapping("/delete/{id}")
+    public void delete(@PathVariable(value = "id", required = false) String ID_Nurse){
         try {
             nurseRepository.deleteById(ID_Nurse);
-        } catch (EmptyResultDataAccessException e) {}
+        }catch (EmptyResultDataAccessException e){}
     }
     @PostMapping(consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    public Nurse postNurse(@RequestBody Nurse nurse) {
+    public Nurse saveNurse(@RequestBody Nurse nurse){
         return nurseRepository.save(nurse);
     }
 }

@@ -1,139 +1,78 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-        <script th:src="@{/js/jquery.min.js}"></script>
-        <script th:src="@{/js/bootstrap.min.js}"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" th:href="@{/styles.css}">
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/font-awesome/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/styles.css}">
 
-        <title>Add Doctor</title>
-    </head>
-    <body>
-        <div class="container menu-nav text-white">
-            <nav class="navbar navbar-expand-lg ktisclinic-bg ">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="ti-menu text-white"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-wheelchair"></i> Patients</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" th:href="@{/patient}">All Patients</a>
-                                <a class="dropdown-item" th:href="@{/patient/add}">Add Patient</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown active">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-user-md"></i> Doctors</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" th:href="@{/doctor}">All Doctors</a>
-                                <a class="dropdown-item" th:href="@{/doctor/add}">Add Doctor</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-stethoscope"></i> Examinations</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" th:href="@{/}">All Examinations</a>
-                                <a class="dropdown-item" th:href="@{/}">Add Examination</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-plus-square"></i> Treatments</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" th:href="@{/}">All Treatments</a>
-                                <a class="dropdown-item" th:href="@{/}">Add Treatment</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-plus-square"></i> Services</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" th:href="@{/}">All Services</a>
-                                <a class="dropdown-item" th:href="@{/}">Add Service</a>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-heartbeat"></i> Nurses</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" th:href="@{/nurse}">All Nurses</a>
-                                <a class="dropdown-item" th:href="@{/nurse/add}">Add Nurse</a>
-                            </div>
-                        </li>
+    <title>Add Doctor</title>
+</head>
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-medkit"></i> Medicines</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" th:href="@{/}">All Medicines</a>
-                                <a class="dropdown-item" th:href="@{/}">Add Medicine</a>
-                            </div>
-                        </li>
+<body>
+<!-- Navigation -->
+<div class="container menu-nav text-white" th:replace="~{fragments/navigation :: navigation}">
+</div><!-- /.navigation -->
 
-                    </ul>
-                </div>
-            </nav>
-        </div>
-        <div class="container">
-            <div class="page-content">
-                <div class="col-md-12">
-                    <div class="row">
-                        <h3 class="widget-title">Add A New Doctor</h3>
-                    </div>
-
-                    <div class="row">
-                        <form method="POST" th:action="@{/doctor/add}" action="" th:object="${doctor}">
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="Doctor-name">Doctor Name</label>
-                                    <input type="text" class="form-control" th:field="*{nameDoctor}" name="name">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="Doctor-exp">Years of Experience</label>
-                                    <input type="text" class="form-control" th:field="*{exp}" name="exp">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="Doctor-id">Doctor ID</label>
-                                    <input type="text" class="form-control" th:field="*{ID_Doctor}" name="id">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="Doctor-diploma">Diploma</label>
-                                    <input type="text" class="form-control" th:field="*{diploma}" name="diploma">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="Doctor-identity">Identity Number</label>
-                                    <input type="text" class="form-control" th:field="*{identityNumber}" name="identity">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="Doctor-field">Field</label>
-                                    <input type="text" class="form-control" th:field="*{field}" name="field">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="Doctor-dob">Date of Birth</label>
-                                    <input type="text" class="form-control" th:field="*{DOB}" name="dob">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="Doctor-position">Position</label>
-                                    <input type="text" class="form-control" th:field="*{position}" name="position">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="Doctor-address">Address</label>
-                                    <input type="text" class="form-control" th:field="*{address}" name="address">
-                                </div>
-
-                            </div>
-
-                            <button type="submit" class="btn-primary btn-lg btn">Add Doctor</button>
-                        </form>
-                    </div>
-                </div>
+<div class="container">
+    <div class="page-content">
+        <div class="col-md-12">
+            <div class="row">
+                <h2 class="widget-title">Doctor Details</h2>
+                <div class="divider"></div>
             </div>
+            <div class="row">
+                <form method="POST" th:action="@{/doctor}" action="" th:object="${doctor}">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="Doctor-name">Doctor Name</label>
+                            <input type="text" class="form-control" th:field="*{nameDoctor}" name="name">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="Doctor-exp">Years of Experience</label>
+                            <input type="text" class="form-control" th:field="*{exp}" name="exp">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="Doctor-id">Doctor ID</label>
+                            <input type="text" class="form-control" th:field="*{ID_Doctor}" name="id">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="Doctor-diploma">Diploma</label>
+                            <input type="text" class="form-control" th:field="*{diploma}" name="diploma">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="Doctor-identity">Identity Number</label>
+                            <input type="text" class="form-control" th:field="*{identityNumber}" name="identity">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="Doctor-field">Field</label>
+                            <input type="text" class="form-control" th:field="*{field}" name="field">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="Doctor-dob">Date of Birth</label>
+                            <input type="date" class="form-control" th:field="*{DOB}" name="dob">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="Doctor-position">Position</label>
+                            <input type="text" class="form-control" th:field="*{position}" name="position">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="Doctor-address">Address</label>
+                            <input type="text" class="form-control" th:field="*{address}" name="address">
+                        </div>
+
+                    </div>
+
+                    <button type="submit" class="btn-primary btn-lg btn">Save Doctor</button>
+                </form>
+            </div>
+
         </div>
-    </body>
+    </div>
+</div>
+
+</body>
 </html>

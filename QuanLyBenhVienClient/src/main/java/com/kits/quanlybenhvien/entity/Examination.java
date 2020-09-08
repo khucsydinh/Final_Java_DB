@@ -6,9 +6,9 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 @Data
 @NoArgsConstructor(force = true)
-public class Examination {
-    Integer ID_Examination;
+public class Examination{
+    Integer IDExamination;
     String ID_DoctorExamination;
-    String ID_Patient;
-    private Date atTime;
+    String IDPatient;
+    private String atTime;
 }

@@ -25,7 +25,7 @@ public class Patient {
     @NotNull
     private String namePatient;
     @NotNull
-    private Date DOB;
+    private String DOB;
     @NotNull
     private String address;
     @NotNull

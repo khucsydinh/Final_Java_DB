@@ -18,7 +18,7 @@ public class Service {
     @Id
     private String nameService;
 
-    @ManyToMany
+    @ManyToMany(targetEntity = Treatment.class)
     List<Treatment> TreatmentList;
 
     @NotNull

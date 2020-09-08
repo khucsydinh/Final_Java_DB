@@ -31,11 +31,15 @@ a:focus {
     transition: all 0.3s;
 }
 
+.divider {
+    background: #E7F3ED;
+    width: 100%;
+    height: 1px;
+    margin: 10px 0;
+}
+
 .widget-title {
     color: #E57498;
-    padding-bottom: .5rem;
-    border-bottom: 1px solid #eeeeee;
-    width: 100%;
 }
 
 .page-content {
@@ -117,8 +121,33 @@ li.nav-item.active {
  	Tables
 ====================== */
 
-.table-data {
-    margin-bottom: 10px;
+.table-option {
+    border-top: 1px solid #eeeeee;
+}
+.alert {
+    padding: .4rem 1.25rem;
+    display: inline-block;
+    margin-top: 10px;
+}
+.alert:empty{
+    display: none;
+}
+
+/*Form*/
+.search-form label{
+    float: right;
+}
+.search-form .form-group {
+    margin-bottom: 0;
+}
+#search.form-control{
+    display: inline-block;
+    width: auto;
+}
+
+/*Table*/
+.child-padding-none>div {
+    padding: 0;
 }
 .table-data>div {
     padding: 0;
@@ -126,6 +155,10 @@ li.nav-item.active {
 
 .widget-area-2 .table-div {
     padding: 0px;
+}
+
+.table {
+    color: inherit;
 }
 .table-striped tbody tr:nth-of-type(odd) {
     background-color: rgba(61,79,90,.03);
@@ -146,18 +179,7 @@ table.dataTable th:first-child{
     color: #555555;
 }
 
-
-// Form
-
-.search-form label{
-    float: right;
-}
-#search.form-control{
-    display: inline-block;
-    width: auto;
-}
-
-// Button
+/*Button*/
 
 .btn.focus,
 .btn:focus {
@@ -176,7 +198,7 @@ button:focus {
     font-size: 18px;
 }
 
-// form
+/*form*/
 .form-control {
     border-color: #E7F3ED;
 }
@@ -190,7 +212,6 @@ input.form-control {
     box-shadow: none;
 }
 form .form-group label{
-    font-weight: bold;
+    font-weight: 600;
     font-size: 14px;
 }
-

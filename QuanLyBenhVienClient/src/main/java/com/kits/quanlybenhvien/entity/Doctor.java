@@ -13,7 +13,7 @@ public class Doctor {
     private String ID_Doctor;
     private String identityNumber;
     private String nameDoctor;
-    private Date DOB;
+    private String DOB;
     private String address;
     private int exp;
     private String diploma;

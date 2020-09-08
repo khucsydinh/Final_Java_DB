@@ -12,7 +12,7 @@ public class Patient {
     private String ID_Patient;
     private String identityNumber;
     private String namePatient;
-    private Date DOB;
+    private String DOB;
     private String address;
     private String phone;
 }
