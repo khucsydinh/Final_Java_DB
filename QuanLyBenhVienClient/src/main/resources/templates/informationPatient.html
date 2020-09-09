@@ -2,41 +2,84 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Information Patient</title>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/font-awesome/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/styles.css}">
+
+    <title>Patients List</title>
 </head>
+
 <body>
-<h1>Information Patient</h1>
-<form method="get " th:action="@{/patient/search}" action="#">
-    <div>
-        <input name="id" type="text" placeholder="Search Id..."/>
-        <button>Search</button>
+    <!-- Navigation -->
+    <div class="container menu-nav text-white" th:replace="~{fragments/navigation :: navigation}">
+    </div><!-- /.navigation -->
+
+    <div class="container">
+        <div class="page-content">
+            <div class="col-md-12">
+                <div class="row child-padding-none">
+                    <div class="col-md-8">
+                        <h2 class="widget-title">Patients List</h2>
+                    </div>
+                    <div class="col-md-4">
+                        <!-- Search -->
+                        <form class="search-form" method="post" action="#" th:action="@{/patient/search}">
+                            <div class="form-group">
+                                <label for="search">
+                                    <input type="search" class="form-control" id="search" placeholder="Search for patient">
+                                </label>
+                            </div>
+                        </form><!-- /.search -->
+                    </div>
+                    <div class="divider"></div>
+                </div>
+                <div class="row child-padding-none">
+                    <div class="col-md-4">
+                        <button class="btn btn-primary"><a href="#" th:href="@{/patient/add}"><i class="fa fa-plus"></i> New Patient</a></button>
+                    </div>
+                    <div class="col-md-8 text-right">
+                        <div class="alert alert-danger" th:text="${warning}" role="alert"></div>
+                    </div>
+                </div>
+                <!-- Lists -->
+                <div class="row">
+                    <table cellpadding="5" th:object="${patients}" class="table table-bordered table-striped dataTable no-footer">
+                        <thead>
+                        <tr role="row">
+                            <th>ID</th>
+                            <th>Identity No.</th>
+                            <th>Name</th>
+                            <th>Date of Birth</th>
+                            <th>Address</th>
+                            <th>Phone</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                        <tbody>
+                        <tr th:each="patient:${patients}">
+                            <td th:text="${patient.ID_Patient}"></td>
+                            <td th:text="${patient.identityNumber}"></td>
+                            <td th:text="${patient.namePatient}"></td>
+                            <td th:text="${patient.DOB}"></td>
+                            <td th:text="${patient.address}"></td>
+                            <td th:text="${patient.phone}"></td>
+                            <td class="text-center"><a href="#" th:href="@{/patient/edit/{id}(id=${patient.ID_Patient})}">
+                                <i class="fa fa-edit fa-lg text-info"></i>
+                            </a></td>
+                            <td class="text-center"><a href="#" th:href="@{/patient/delete/{id}(id=${patient.ID_Patient})}">
+                                <i class="fa fa-trash fa-lg text-danger"></i>
+                            </a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div><!-- /.lists -->
+
+            </div>
+        </div>
     </div>
-    <div>
-        <table cellpadding="5" border="1" th:object="${patients}">
-            <tr>
-                <td align="right"><label for="id">ID</label></td>
-                <td align="right"><label for="identity">IdentityNumber</label></td>
-                <td align="right"><label for="name">Name</label></td>
-                <td align="right"><label for="dob">DOB</label></td>
-                <td align="right"><label for="address">Address</label></td>
-                <td align="right"><label for="exp">Phone</label></td>
-                <td align="right"><label for="delete">Delete</label></td>
-                <td align="right"><label for="edit">Edit</label></td>
-            </tr>
-            <tr th:each="patient:${patients}">
-                <td align="left"><label th:text="${patient.ID_Patient}"></label></td>
-                <td align="left"><label th:text="${patient.identityNumber}"></label></td>
-                <td align="left"><label th:text="${patient.namePatient}"></label></td>
-                <td align="left"><label th:text="${patient.DOB}"></label></td>
-                <td align="left"><label th:text="${patient.address}"></label></td>
-                <td align="left"><label th:text="${patient.phone}"></label></td>
-                <td><a href="#" th:href="@{/patient/delete/{id}(id=${patient.ID_Patient})}">Delete</a></td>
-                <td><a href="#" th:href="@{/patient/edit/{id}(id=${patient.ID_Patient})}">Edit</a></td>
-            </tr>
-        </table>
-    </div>
-</form>
-<h2><a th:href="@{/patient/add}" href="#">Add new Patient</a></h2>
+
 </body>
 </html>

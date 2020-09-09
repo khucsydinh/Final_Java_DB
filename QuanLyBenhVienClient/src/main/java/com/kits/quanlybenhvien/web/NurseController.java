@@ -37,7 +37,7 @@ public class NurseController {
     public String processNurse(@RequestParam(value = "ID_Nurse",required = false) String id ,
                                @RequestParam(value = "identityNumber", required = false) String identity,
                                @RequestParam(value = "nameNurse", required = false) String name,
-                               @RequestParam(value = "DOB",required = false) @DateTimeFormat(pattern="yyyy-MM-dd") Date dob ,
+                               @RequestParam(value = "DOB",required = false) String dob ,
                                @RequestParam(value = "address",required = false) String address,
                                @RequestParam(value = "exp",required = false) int exp,
                                @RequestParam(value = "diploma",required = false) String diploma ,
