@@ -12,5 +12,4 @@ import java.util.List;
 public class Service {
     private String nameService;
     private float price;
-    private List<Treatment> treatment = new ArrayList<>();
 }

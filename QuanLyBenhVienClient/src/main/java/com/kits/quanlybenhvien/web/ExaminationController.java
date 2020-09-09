@@ -76,9 +76,10 @@ public class ExaminationController {
         return "redirect:/examination";
     }
     @GetMapping("/search")
-    public String search(@RequestParam(value = "id",required = false) int id,Model model){
-        Examination examination = rest.getForObject("http://localhost:8081/examination/{id}", Examination.class,id);
-        model.addAttribute("examination",examination);
+    public String search(@RequestParam(value = "id",required = false) String keyWord,Model model){
+        System.out.println(keyWord);
+        List<Examination> examinations = Arrays.asList(rest.getForObject("http://localhost:8081/examination/search/{keyword}", Examination[].class,keyWord));
+        model.addAttribute("examinations",examinations);
         return "informationExamination";
     }
 }

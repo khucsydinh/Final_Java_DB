@@ -2,6 +2,7 @@ package com.kits.quanlybenhvien.web;
 
 import com.kits.quanlybenhvien.entity.DiseaseExamine;
 
+import com.kits.quanlybenhvien.entity.Examination;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -86,9 +87,10 @@ public class DiseaseExamineController {
 
 
     @GetMapping("/search")
-    public String search(@RequestParam(value = "id",required = false) String id,Model model){
-        DiseaseExamine diseaseExamine = rest.getForObject("http://localhost:8081/diseaseExamine/{id}", DiseaseExamine.class,id);
-        model.addAttribute("diseaseExamine",diseaseExamine);
+    public String search(@RequestParam(value = "id",required = false) String keyWord,Model model){
+        System.out.println(keyWord);
+        List<DiseaseExamine> diseaseExamines = Arrays.asList(rest.getForObject("http://localhost:8081/diseaseExamine/search/{keyword}", DiseaseExamine[].class,keyWord));
+        model.addAttribute("diseaseExamines",diseaseExamines);
         return "informationDiseaseExamine";
     }
 }

@@ -12,6 +12,5 @@ public class Med {
     private String nameMed;
     private float price;
     private String usedFor;
-    private List<Treatment> treatmentList = new ArrayList<>();
 
 }

@@ -1,9 +1,6 @@
 package com.kits.quanlybenhvien.web;
 
-import com.kits.quanlybenhvien.entity.Examination;
-import com.kits.quanlybenhvien.entity.Med;
-import com.kits.quanlybenhvien.entity.Service;
-import com.kits.quanlybenhvien.entity.Treatment;
+import com.kits.quanlybenhvien.entity.*;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -93,9 +90,10 @@ public class TreatmentController {
         return "redirect:/treatment";
     }
     @GetMapping("/search")
-    public String search(@RequestParam(value = "id",required = false) String id,Model model){
-        Treatment treatment = rest.getForObject("http://localhost:8081/treatment/{id}", Treatment.class,id);
-        model.addAttribute("treatment",treatment);
+    public String search(@RequestParam(value = "id",required = false) String keyWord,Model model){
+        System.out.println(keyWord);
+        List<Treatment> treatments= Arrays.asList(rest.getForObject("http://localhost:8081/treatment/search/{keyword}", Treatment[].class,keyWord));
+        model.addAttribute("treatments",treatments);
         return "informationTreatment";
     }
 }

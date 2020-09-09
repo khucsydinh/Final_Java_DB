@@ -4,14 +4,9 @@
     <link rel="stylesheet" th:href="@{/styles.css}"/>
 </head>
 <body>
-<form method="POST" th:action="@{/med}" action="" th:object="${med}">
-    <h1>Add a new Med!</h1>
-    <h3>Input the med information ...</h3>
+<form method="POST" action="" th:object="${med}" th:action="@{/med/edit/{nameMed}(nameMed=${med.nameMed})}">
+    <h1>Edit Med</h1>
     <table cellspacing="5" border="0">
-        <tr>
-            <td align="right"><label for="nameMed">Name Med: </label></td>
-            <td align="right"><input name="nameMed" type="text" th:field="*{nameMed} "/></td>
-        </tr>
         <tr>
             <td align="right"><label for="price">Price: </label></td>
             <td align="right"><input name="price" type="text" th:field="*{price}"/></td>
