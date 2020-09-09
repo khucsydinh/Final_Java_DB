@@ -35,5 +35,5 @@ public class Treatment extends TreatmentKey{
     String ID_Nurse;
 
     private String atTime;
-    private String status;
+    private Boolean status;
 }

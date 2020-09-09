@@ -61,7 +61,7 @@ public class NurseController {
         try{
             rest.delete("http://localhost:8081/nurse/delete/{ID_Nurse}",id);
         }catch (Exception e){
-            model.addAttribute("warning","Cannot delete! This doctor is currently in examination");
+            model.addAttribute("warning","Cannot delete! This nurse is currently attending in treatment process");
         }
 
         List<Nurse> nurses = Arrays.asList(rest.getForObject("http://localhost:8081/nurse",Nurse[].class));
@@ -77,6 +77,7 @@ public class NurseController {
     }
     @PostMapping("/search")
     public String search(@RequestParam(value = "id",required = false) String id,Model model){
+        System.out.println(id);
         Nurse nurse = rest.getForObject("http://localhost:8081/nurse/{id}", Nurse.class,id);
         model.addAttribute("nurses",nurse);
         return "informationNurse";

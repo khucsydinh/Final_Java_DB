@@ -61,6 +61,27 @@ public class TreatmentController {
         return null;
     }
 
+    @DeleteMapping("/delete/{id}/{id2}/{id3}/{id4}/{id5}/{id6}/{id7}")
+    public void delete(@PathVariable(value = "id", required = false) Integer id,
+                       @PathVariable(value = "id2", required = false) Integer id2,
+                       @PathVariable(value = "id3", required = false) String id3,
+                       @PathVariable(value = "id4", required = false) String id4,
+                       @PathVariable(value = "id5", required = false) String id5,
+                       @PathVariable(value = "id6", required = false) String id6,
+                       @PathVariable(value = "id7", required = false) String id7){
+        TreatmentKey treatmentKey = new TreatmentKey();
+        treatmentKey.setID_Treatment(id);
+        treatmentKey.setIDExamination(id2);
+        treatmentKey.setNameDisease(id3);
+        treatmentKey.setID_DoctorExamination(id4);
+        treatmentKey.setID_DoctorCure(id5);
+        treatmentKey.setIDPatient(id6);
+        treatmentKey.setID_Nurse(id7);
+        try {
+            treatmentRepository.deleteById(treatmentKey);
+        }catch (EmptyResultDataAccessException e){}
+    }
+
     @PostMapping(consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public Treatment saveTreatment(@RequestBody Treatment treatment){

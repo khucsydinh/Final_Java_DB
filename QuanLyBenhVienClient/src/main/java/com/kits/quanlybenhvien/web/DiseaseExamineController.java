@@ -55,10 +55,10 @@ public class DiseaseExamineController {
         try{
             rest.delete("http://localhost:8081/diseaseExamine/delete/{id}/{id2}/{id3}/{id4}",id,id2,id3,id4);
         }catch (Exception e){
-            model.addAttribute("warning","Cannot delete! This disease is currently involved treatment");
+            model.addAttribute("warning","This patient is currently in treatment process");
         }
+
         List<DiseaseExamine> diseaseExamines = Arrays.asList(rest.getForObject("http://localhost:8081/diseaseExamine",DiseaseExamine[].class));
-        System.out.println(diseaseExamines);
         model.addAttribute("diseaseExamines",diseaseExamines);
         return "informationDiseaseExamine";
     }
@@ -78,12 +78,9 @@ public class DiseaseExamineController {
     public String updateDiseaseExamine( @PathVariable(value = "id",required = false) Integer id,
                                         @PathVariable(value = "id2",required = false) String id2,
                                         @PathVariable(value = "id3",required = false) String id3,
-                                        @PathVariable(value = "id4",required = false) String id4,DiseaseExamine diseaseExamine,Model model){
-        try {
-            rest.delete("http://localhost:8081/diseaseExamine/delete/{id}/{id2}/{id3}/{id4}", id, id2, id3, id4);
-        }catch (Exception e){
-            model.addAttribute("warning","Cannot update! This disease is currently involved treatment");
-        }
+                                        @PathVariable(value = "id4",required = false) String id4,DiseaseExamine diseaseExamine){
+        rest.delete("http://localhost:8081/diseaseExamine/delete/{id}/{id2}/{id3}/{id4}",id,id2,id3,id4);
+
         diseaseExamine.setIDExamination(id);
         diseaseExamine.setID_DoctorExamination(id2);
         diseaseExamine.setIDPatient(id3);
@@ -94,7 +91,7 @@ public class DiseaseExamineController {
     }
 
 
-    @GetMapping("/search")
+    @PostMapping("/search")
     public String search(@RequestParam(value = "id",required = false) String keyWord,Model model){
         System.out.println(keyWord);
         List<DiseaseExamine> diseaseExamines = Arrays.asList(rest.getForObject("http://localhost:8081/diseaseExamine/search/{keyword}", DiseaseExamine[].class,keyWord));

@@ -49,10 +49,10 @@ public class ExaminationController {
                                     @PathVariable(value = "id2",required = false) String id2,
                                     @PathVariable(value = "id3",required = false) String id3,
                                     Model model){
-        try{
+        try {
             rest.delete("http://localhost:8081/examination/delete/{id}/{id2}/{id3}",id,id2,id3);
         }catch (Exception e){
-            model.addAttribute("warning","Cannot delete! This examination is currently...");
+            model.addAttribute("warning","Cannot delete! This patient is already registered in diseases record");
         }
 
         List<Examination> examinations = Arrays.asList(rest.getForObject("http://localhost:8081/examination",Examination[].class));
@@ -80,7 +80,7 @@ public class ExaminationController {
 
         return "redirect:/examination";
     }
-    @GetMapping("/search")
+    @PostMapping("/search")
     public String search(@RequestParam(value = "id",required = false) String keyWord,Model model){
         System.out.println(keyWord);
         List<Examination> examinations = Arrays.asList(rest.getForObject("http://localhost:8081/examination/search/{keyword}", Examination[].class,keyWord));

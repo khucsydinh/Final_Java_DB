@@ -20,6 +20,6 @@ public class Treatment {
     private String ID_Nurse;
 
     private String atTime;
-    private String status;
+    private Boolean status;
 
 }

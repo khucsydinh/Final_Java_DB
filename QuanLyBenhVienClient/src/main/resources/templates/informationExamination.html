@@ -13,13 +13,6 @@
 </head>
 
 <body>
-<<<<<<< HEAD
-<h1>Information Examination</h1>
-<form method="get " th:action="@{/examination/search}" action="#">
-    <div>
-        <input name="id" type="text" placeholder="Search..."/>
-        <button>Search</button>
-=======
 <!-- Navigation -->
 <div class="container menu-nav text-white" th:replace="~{fragments/navigation :: navigation}">
 </div><!-- /.navigation -->
@@ -36,7 +29,7 @@
                     <form class="search-form" method="post" action="#" th:action="@{/examination/search}">
                         <div class="form-group">
                             <label for="search">
-                                <input type="search" class="form-control" id="search" placeholder="Search for examination">
+                                <input name="id" type="search" class="form-control" id="search" placeholder="Search for examination">
                             </label>
                         </div>
                     </form><!-- /.search -->
@@ -83,7 +76,6 @@
             </div><!-- /.lists -->
 
         </div>
->>>>>>> 0eea0824e67f51b90f0fda898d87afd3a1e37f49
     </div>
 </div>
 

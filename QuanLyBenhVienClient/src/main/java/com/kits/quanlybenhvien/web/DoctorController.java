@@ -62,7 +62,7 @@ public class DoctorController {
         try{
             rest.delete("http://localhost:8081/doctor/delete/{ID_Doctor}",id);
         }catch (Exception e){
-            model.addAttribute("warning","Cannot delete! This doctor is currently in examination");
+            model.addAttribute("warning","Cannot delete! This doctor is currently attending in examination/treatment process");
         }
 
         List<Doctor> doctors = Arrays.asList(rest.getForObject("http://localhost:8081/doctor",Doctor[].class));

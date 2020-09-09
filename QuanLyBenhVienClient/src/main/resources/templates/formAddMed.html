@@ -1,9 +1,5 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<<<<<<< HEAD
-<head><title>Taco Cloud</title>
-    <link rel="stylesheet" th:href="@{/styles.css}"/>
-=======
 <html lang="en">
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
@@ -14,29 +10,9 @@
     <link rel="stylesheet" th:href="@{/styles.css}">
 
     <title>Add Patient</title>
->>>>>>> 0eea0824e67f51b90f0fda898d87afd3a1e37f49
 </head>
 
 <body>
-<<<<<<< HEAD
-<form method="POST" th:action="@{/med}" action="" th:object="${med}">
-    <h1>Add a new Med!</h1>
-    <h3>Input the med information ...</h3>
-    <table cellspacing="5" border="0">
-        <tr>
-            <td align="right"><label for="nameMed">Name Med: </label></td>
-            <td align="right"><input name="nameMed" type="text" th:field="*{nameMed} "/></td>
-        </tr>
-        <tr>
-            <td align="right"><label for="price">Price: </label></td>
-            <td align="right"><input name="price" type="text" th:field="*{price}"/></td>
-        </tr>
-
-        <tr>
-            <td align="right"><label for="usedFor">UserFor: </label></td>
-            <td align="right"><input name="usedFor" type="text" th:field="*{usedFor}"/></td>
-        </tr>
-=======
 <!-- Navigation -->
 <div class="container menu-nav text-white" th:replace="~{fragments/navigation :: navigation}">
 </div><!-- /.navigation -->
@@ -69,7 +45,6 @@
                     <button type="submit" class="btn-primary btn-lg btn">Save Medicine</button>
                 </form>
             </div>
->>>>>>> 0eea0824e67f51b90f0fda898d87afd3a1e37f49
 
         </div>
     </div>
