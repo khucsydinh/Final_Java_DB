@@ -1,54 +1,97 @@
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"><!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Information Medicine List</title>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/font-awesome/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/styles.css}">
+
+    <title>Medical Prescriptions</title>
 </head>
+
 <body>
-<h1>Information Medicine List</h1>
-<form method="get " th:action="@{/medlist/search}" action="#">
-    <div>
-        <input name="id" type="text" placeholder="Search Id..."/>
-        <button>Search</button>
-    </div>
-    <div>
-        <table cellpadding="5" border="1" th:object="${medlists}">
-            <tr>
-                <td align="right"><label for="ID_Treatment">ID Treatment</label></td>
-                <td align="right"><label for="IDExamination">ID Examination</label></td>
-                <td align="right"><label for="IDPatient">ID Patient</label></td>
-                <td align="right"><label for="nameDisease">Name Disease</label></td>
-                <td align="right"><label for="ID_DoctorExamination">ID Doctor Examination</label></td>
-                <td align="right"><label for="ID_DoctorCure">ID Doctor Cure</label></td>
-                <td align="right"><label for="ID_Nurse">ID Nurse</label></td>
-                <td align="right"><label for="nameMed">Name Med</label></td>
+    <!-- Navigation -->
+    <div class="container menu-nav text-white" th:replace="~{fragments/navigation :: navigation}">
+    </div><!-- /.navigation -->
 
-                <td align="right"><label for="delete">Delete</label></td>
-            </tr>
-            <tr th:each="medlist:${medlists}">
-                <td align="left"><label th:text="${medlist.ID_Treatment}"></label></td>
-                <td align="left"><label th:text="${medlist.IDExamination}"></label></td>
-                <td align="left"><label th:text="${medlist.IDPatient}"></label></td>
-                <td align="left"><label th:text="${medlist.nameDisease}"></label></td>
-                <td align="left"><label th:text="${medlist.ID_DoctorExamination}"></label></td>
-                <td align="left"><label th:text="${medlist.ID_DoctorCure}"></label></td>
-                <td align="left"><label th:text="${medlist.ID_Nurse}"></label></td>
-                <td align="left"><label th:text="${medlist.nameMed}"></label></td>
+    <div class="container">
+        <div class="page-content">
+            <div class="col-md-12">
+                <div class="row child-padding-none">
+                    <div class="col-md-8">
+                        <h2 class="widget-title">Prescriptions List</h2>
+                    </div>
+                    <div class="col-md-4">
+                        <!-- Search -->
+                        <form class="search-form" method="get" action="#" th:action="@{/medlist/search}">
+                            <div class="form-group">
+                                <label for="search">
+                                    <input type="search" name="id" class="form-control" id="search" placeholder="Search for medicine...">
+                                </label>
+                            </div>
+                        </form><!-- /.search -->
+                    </div>
+                    <div class="divider"></div>
+                </div>
 
-                <td><a href="#" th:href="@{/medlist/delete/{id}/{id2}/{id3}/{id4}/{id5}/{id6}/{id7}/{id8}
-                (id=${medlist.nameMed},
-                id2=${medlist.ID_Treatment},
-                id3=${medlist.IDExamination},
-                id4=${medlist.nameDisease},
-                id5=${medlist.ID_DoctorExamination},
-                id6=${medlist.ID_DoctorCure},
-                id7=${medlist.IDPatient},
-                id8=${medlist.ID_Nurse})}">Delete</a></td>
-            </tr>
-        </table>
+                <div class="row child-padding-none">
+                    <div class="col-md-4">
+                        <button class="btn btn-primary"><a href="#" th:href="@{/medlist/add}"><i class="fa fa-plus"></i> New Prescription</a></button>
+                    </div>
+                    <div class="col-md-8 text-right">
+                        <div class="alert alert-danger" th:text="${warning}" role="alert"></div>
+                    </div>
+                </div>
+
+                <!-- Lists -->
+                <div class="row">
+                    <table cellpadding="5" th:object="${medlists}" class="table table-bordered table-striped dataTable no-footer text-center">
+                        <thead>
+                        <tr role="row">
+                            <th>Treatment ID</th>
+                            <th>Examination ID</th>
+                            <th>Patient ID</th>
+                            <th>Disease</th>
+                            <th>Doctor Exam. ID</th>
+                            <th>Doctor Cure</th>
+                            <th>Nurse ID</th>
+                            <th>Medicine</th>
+                            <th class="text-center">Delete</th>
+                        </tr>
+                        <tbody>
+                        <tr th:each="medlist:${medlists}">
+                            <td th:text="${medlist.ID_Treatment}"></td>
+                            <td th:text="${medlist.IDExamination}"></td>
+                            <td th:text="${medlist.IDPatient}"></td>
+                            <td th:text="${medlist.nameDisease}"></td>
+                            <td th:text="${medlist.ID_DoctorExamination}"></td>
+                            <td th:text="${medlist.ID_DoctorCure}"></td>
+                            <td th:text="${medlist.ID_Nurse}"></td>
+                            <td th:text="${medlist.nameMed}"></td>
+                            <td>
+                                <a href="#" th:href="@{/medlist/delete/{id}/{id2}/{id3}/{id4}/{id5}/{id6}/{id7}/{id8}
+                                    (id=${medlist.nameMed},
+                                    id2=${medlist.ID_Treatment},
+                                    id3=${medlist.IDExamination},
+                                    id4=${medlist.nameDisease},
+                                    id5=${medlist.ID_DoctorExamination},
+                                    id6=${medlist.ID_DoctorCure},
+                                    id7=${medlist.IDPatient},
+                                    id8=${medlist.ID_Nurse})}">
+                                <i class="fa fa-trash fa-lg text-danger"></i>
+                            </a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div><!-- /.lists -->
+
+            </div>
+        </div>
     </div>
-</form>
-<h2><a th:href="@{/medlist/add}" href="#">Add new Medicine List</a></h2>
+
 </body>
 </html>
