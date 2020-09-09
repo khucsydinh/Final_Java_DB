@@ -2,37 +2,90 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Information Examination</title>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/font-awesome/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/styles.css}">
+
+    <title>All Examinations</title>
 </head>
+
 <body>
+<<<<<<< HEAD
 <h1>Information Examination</h1>
 <form method="get " th:action="@{/examination/search}" action="#">
     <div>
         <input name="id" type="text" placeholder="Search..."/>
         <button>Search</button>
+=======
+<!-- Navigation -->
+<div class="container menu-nav text-white" th:replace="~{fragments/navigation :: navigation}">
+</div><!-- /.navigation -->
+
+<div class="container">
+    <div class="page-content">
+        <div class="col-md-12">
+            <div class="row child-padding-none">
+                <div class="col-md-8">
+                    <h2 class="widget-title">All Examinations</h2>
+                </div>
+                <div class="col-md-4">
+                    <!-- Search -->
+                    <form class="search-form" method="post" action="#" th:action="@{/examination/search}">
+                        <div class="form-group">
+                            <label for="search">
+                                <input type="search" class="form-control" id="search" placeholder="Search for examination">
+                            </label>
+                        </div>
+                    </form><!-- /.search -->
+                </div>
+                <div class="divider"></div>
+            </div>
+            <div class="row child-padding-none">
+                <div class="col-md-4">
+                    <button class="btn btn-primary"><a href="#" th:href="@{/examination/add}"><i class="fa fa-plus"></i> New Examination</a></button>
+                </div>
+                <div class="col-md-8 text-right">
+                    <div class="alert alert-danger" th:text="${warning}" role="alert"></div>
+                </div>
+            </div>
+            <!-- Lists -->
+            <div class="row">
+                <table cellpadding="5" th:object="${examinations}" class="table table-bordered table-striped dataTable no-footer">
+                    <thead>
+                    <tr role="row">
+                        <th>Exam. ID</th>
+                        <th>Doctor Examination ID</th>
+                        <th>Patient ID</th>
+                        <th>Time</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                    <tbody>
+                    <tr th:each="examination:${examinations}">
+                        <td th:text="${examination.IDExamination}"></td>
+                        <td th:text="${examination.ID_DoctorExamination}"></td>
+                        <td th:text="${examination.IDPatient}"></td>
+                        <td th:text="${examination.atTime}"></td>
+                        <td class="text-center">
+                            <a href="#" th:href="@{/examination/edit/{id}/{id2}/{id3}(id=${examination.IDExamination},id2=${examination.ID_DoctorExamination},id3=${examination.IDPatient})}">
+                                <i class="fa fa-edit fa-lg text-info"></i></a>
+                        </td>
+                        <td class="text-center">
+                            <a href="#" th:href="@{/examination/delete/{id}/{id2}/{id3}(id=${examination.IDExamination},id2=${examination.ID_DoctorExamination},id3=${examination.IDPatient})}">
+                                <i class="fa fa-trash fa-lg text-danger"></i></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div><!-- /.lists -->
+
+        </div>
+>>>>>>> 0eea0824e67f51b90f0fda898d87afd3a1e37f49
     </div>
-    <div>
-        <table cellpadding="5" border="1" th:object="${examinations}">
-            <tr>
-                <td align="right"><label for="IDExamination">ID Examination</label></td>
-                <td align="right"><label for="ID_DoctorExamination">ID Doctor Examination</label></td>
-                <td align="right"><label for="IDPatient">ID Patient</label></td>
-                <td align="right"><label for="AtTime">At Time</label></td>
-                <td align="right"><label for="delete">Delete</label></td>
-                <td align="right"><label for="edit">Edit</label></td>
-            </tr>
-            <tr th:each="examination:${examinations}">
-                <td align="left"><label th:text="${examination.IDExamination}"></label></td>
-                <td align="left"><label th:text="${examination.ID_DoctorExamination}"></label></td>
-                <td align="left"><label th:text="${examination.IDPatient}"></label></td>
-                <td align="left"><label th:text="${examination.atTime}"></label></td>
-                <td><a href="#" th:href="@{/examination/delete/{id}/{id2}/{id3}(id=${examination.IDExamination},id2=${examination.ID_DoctorExamination},id3=${examination.IDPatient})}">Delete</a></td>
-                <td><a href="#" th:href="@{/examination/edit/{id}/{id2}/{id3}(id=${examination.IDExamination},id2=${examination.ID_DoctorExamination},id3=${examination.IDPatient})}">Edit</a></td>
-            </tr>
-        </table>
-    </div>
-</form>
-<h2><a th:href="@{/examination/add}" href="#">Add new examination</a></h2>
+</div>
+
 </body>
 </html>

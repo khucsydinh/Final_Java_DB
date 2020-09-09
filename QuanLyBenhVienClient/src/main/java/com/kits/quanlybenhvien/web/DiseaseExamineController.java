@@ -52,8 +52,13 @@ public class DiseaseExamineController {
                                        @PathVariable(value = "id3",required = false) String id3,
                                        @PathVariable(value = "id4",required = false) String id4,
                                        Model model){
-        rest.delete("http://localhost:8081/diseaseExamine/delete/{id}/{id2}/{id3}/{id4}",id,id2,id3,id4);
+        try{
+            rest.delete("http://localhost:8081/diseaseExamine/delete/{id}/{id2}/{id3}/{id4}",id,id2,id3,id4);
+        }catch (Exception e){
+            model.addAttribute("warning","Cannot delete! This disease is currently involved treatment");
+        }
         List<DiseaseExamine> diseaseExamines = Arrays.asList(rest.getForObject("http://localhost:8081/diseaseExamine",DiseaseExamine[].class));
+        System.out.println(diseaseExamines);
         model.addAttribute("diseaseExamines",diseaseExamines);
         return "informationDiseaseExamine";
     }
@@ -73,9 +78,12 @@ public class DiseaseExamineController {
     public String updateDiseaseExamine( @PathVariable(value = "id",required = false) Integer id,
                                         @PathVariable(value = "id2",required = false) String id2,
                                         @PathVariable(value = "id3",required = false) String id3,
-                                        @PathVariable(value = "id4",required = false) String id4,DiseaseExamine diseaseExamine){
-        rest.delete("http://localhost:8081/diseaseExamine/delete/{id}/{id2}/{id3}/{id4}",id,id2,id3,id4);
-
+                                        @PathVariable(value = "id4",required = false) String id4,DiseaseExamine diseaseExamine,Model model){
+        try {
+            rest.delete("http://localhost:8081/diseaseExamine/delete/{id}/{id2}/{id3}/{id4}", id, id2, id3, id4);
+        }catch (Exception e){
+            model.addAttribute("warning","Cannot update! This disease is currently involved treatment");
+        }
         diseaseExamine.setIDExamination(id);
         diseaseExamine.setID_DoctorExamination(id2);
         diseaseExamine.setIDPatient(id3);

@@ -1,6 +1,7 @@
 package com.kits.quanlybenhvien.web;
 
 import com.kits.quanlybenhvien.entity.Doctor;
+import com.kits.quanlybenhvien.entity.Nurse;
 import com.kits.quanlybenhvien.entity.Patient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -50,8 +51,14 @@ public class PatientController {
     }
     @GetMapping("/delete/{id}")
     public String deletePatient(@PathVariable(value = "id",required = false) String id,Model model){
-        rest.delete("http://localhost:8081/patient/delete/{id}",id);
+        try{
+            rest.delete("http://localhost:8081/patient/delete/{ID_Patient}",id);
+        }catch (Exception e){
+            model.addAttribute("warning","Cannot delete! This doctor is currently in examination");
+        }
+
         List<Patient> patients = Arrays.asList(rest.getForObject("http://localhost:8081/patient",Patient[].class));
+        System.out.println(patients);
         model.addAttribute("patients",patients);
         return "informationPatient";
     }
@@ -61,7 +68,7 @@ public class PatientController {
         model.addAttribute("patient",patient);
         return "formAddPatient";
     }
-    @GetMapping("/search")
+    @PostMapping("/search")
     public String search(@RequestParam(value = "id",required = false) String id,Model model){
         Patient patient = rest.getForObject("http://localhost:8081/patient/{id}", Patient.class,id);
         model.addAttribute("patients",patient);

@@ -157,6 +157,9 @@ li.nav-item.active {
     padding: 0px;
 }
 
+.table {
+    color: inherit;
+}
 .table-striped tbody tr:nth-of-type(odd) {
     background-color: rgba(61,79,90,.03);
 }
@@ -212,4 +215,3 @@ form .form-group label{
     font-weight: 600;
     font-size: 14px;
 }
-
