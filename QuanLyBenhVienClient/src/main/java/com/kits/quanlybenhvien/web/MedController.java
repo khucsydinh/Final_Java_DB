@@ -44,7 +44,11 @@ public class MedController {
 
     @GetMapping("/delete/{id}")
     public String deleteMed(@PathVariable("id")String id, Model model) {
-        rest.delete("http://localhost:8081/med/delete/{nameMed}",id);
+        try {
+            rest.delete("http://localhost:8081/med/delete/{nameMed}", id);
+        } catch(Exception e) {
+            model.addAttribute("warning","Cannot delete! This medicine is currently in use.");
+        }
         List<Med> meds = Arrays.asList(rest.getForObject("http://localhost:8081/med",Med[].class));
         System.out.println(meds);
         model.addAttribute("meds",meds);
