@@ -73,12 +73,12 @@ public class TreatmentController {
 
     @PostMapping("/edit/{id}/{id2}/{id3}/{id4}/{id5}/{id6}/{id7}")
     public String updateTreatment(@PathVariable(value = "id",required = false) Integer id,
-                                    @PathVariable(value = "id2",required = false) Integer id2,
-                                    @PathVariable(value = "id3",required = false) String id3,
-                                    @PathVariable(value = "id4",required = false) String id4,
-                                    @PathVariable(value = "id5",required = false) String id5,
-                                    @PathVariable(value = "id6",required = false) String id6,
-                                    @PathVariable(value = "id7",required = false) String id7, Treatment treatment){
+                                  @PathVariable(value = "id2",required = false) Integer id2,
+                                  @PathVariable(value = "id3",required = false) String id3,
+                                  @PathVariable(value = "id4",required = false) String id4,
+                                  @PathVariable(value = "id5",required = false) String id5,
+                                  @PathVariable(value = "id6",required = false) String id6,
+                                  @PathVariable(value = "id7",required = false) String id7, Treatment treatment){
         treatment.setID_Treatment(id);
         treatment.setIDExamination(id2);
         treatment.setNameDisease(id3);
