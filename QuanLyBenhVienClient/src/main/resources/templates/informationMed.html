@@ -7,10 +7,10 @@
 </head>
 <body>
 <h1>Information Medicine</h1>
-<form method="get " th:action="@{/}" action="#">
+<form method="post" th:action="@{/med/search}" action="#">
     <div>
-        <input/>
-        <button></button>
+        <input name="nameMed" type="text" placeholder="Search by Name Med">
+        <button>Search</button>
     </div>
     <div>
         <table cellpadding="5" border="1" th:object="${meds}">
@@ -18,18 +18,19 @@
                 <td align="right"><label for="nameMed">Name</label></td>
                 <td align="right"><label for="price">Price</label></td>
                 <td align="right"><label for="usedFor">Used For</label></td>
-
-
+                <td align="right"><label for="Delete">Delete</label></td>
+                <td align="right"><label for="Edit">Edit</label></td>
             </tr>
             <tr th:each="med:${meds}">
                 <td align="left"><label th:text="${med.nameMed}"></label></td>
                 <td align="left"><label th:text="${med.price}"></label></td>
                 <td align="left"><label th:text="${med.usedFor}"></label></td>
-
+                <td><a href="#" th:href="@{/med/delete/{nameMed}(nameMed=${med.nameMed})}">delete</a></td>
+                <td><a href="#" th:href="@{/med/edit/{nameMed}(nameMed=${med.nameMed})}">exit</a></td>
             </tr>
         </table>
     </div>
 </form>
-<h2><a th:href="@{/Med/add}" href="#">Add new Medicine</a></h2>
+<h2><a th:href="@{/med/add}" href="#">Add new Medicine</a></h2>
 </body>
 </html>

@@ -22,16 +22,16 @@ public class MedController {
     public Iterable<Med> getAllMed(){
         return medRepository.findAll();
     }
-    @GetMapping("/{id}")
-    public Med medById(@PathVariable("nameMed") String nameMed){
+    @GetMapping("/{nameMed}")
+    public Med medById(@PathVariable(value = "nameMed",required = false) String nameMed){
         Optional<Med> optionalMed = medRepository.findById(nameMed);
         if(optionalMed.isPresent()){
             return optionalMed.get();
         }
         return null;
     }
-    @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable("nameMed") String nameMed){
+    @DeleteMapping("/delete/{nameMed}")
+    public void delete(@PathVariable(value = "nameMed",required = false) String nameMed){
         try {
             medRepository.deleteById(nameMed);
         }catch (EmptyResultDataAccessException e){}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Information Service List</title>
+</head>
+<body>
+<h1>Information Service List</h1>
+<form method="get " th:action="@{/servicelist/search}" action="#">
+    <div>
+        <input name="id" type="text" placeholder="Search Id..."/>
+        <button>Search</button>
+    </div>
+    <div>
+        <table cellpadding="5" border="1" th:object="${servicelists}">
+            <tr>
+                <td align="right"><label for="ID_Treatment">ID Treatment</label></td>
+                <td align="right"><label for="IDExamination">ID Examination</label></td>
+                <td align="right"><label for="IDPatient">ID Patient</label></td>
+                <td align="right"><label for="nameDisease">Name Service</label></td>
+                <td align="right"><label for="ID_DoctorExamination">ID Doctor Examination</label></td>
+                <td align="right"><label for="ID_DoctorCure">ID Doctor Cure</label></td>
+                <td align="right"><label for="ID_Nurse">ID Nurse</label></td>
+                <td align="right"><label for="nameService">Name Service</label></td>
+
+                <td align="right"><label for="delete">Delete</label></td>
+            </tr>
+            <tr th:each="servicelist:${servicelists}">
+                <td align="left"><label th:text="${servicelist.ID_Treatment}"></label></td>
+                <td align="left"><label th:text="${servicelist.IDExamination}"></label></td>
+                <td align="left"><label th:text="${servicelist.IDPatient}"></label></td>
+                <td align="left"><label th:text="${servicelist.nameDisease}"></label></td>
+                <td align="left"><label th:text="${servicelist.ID_DoctorExamination}"></label></td>
+                <td align="left"><label th:text="${servicelist.ID_DoctorCure}"></label></td>
+                <td align="left"><label th:text="${servicelist.ID_Nurse}"></label></td>
+                <td align="left"><label th:text="${servicelist.nameService}"></label></td>
+
+                <td><a href="#" th:href="@{/servicelist/delete/{id}/{id2}/{id3}/{id4}/{id5}/{id6}/{id7}/{id8}
+                (id=${servicelist.nameService},
+                id2=${servicelist.ID_Treatment},
+                id3=${servicelist.IDExamination},
+                id4=${servicelist.nameDisease},
+                id5=${servicelist.ID_DoctorExamination},
+                id6=${servicelist.ID_DoctorCure},
+                id7=${servicelist.IDPatient},
+                id8=${servicelist.ID_Nurse})}">Delete</a></td>
+            </tr>
+        </table>
+    </div>
+</form>
+<h2><a th:href="@{/servicelist/add}" href="#">Add new Service List</a></h2>
+</body>
+</html>

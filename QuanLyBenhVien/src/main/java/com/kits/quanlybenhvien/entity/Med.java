@@ -16,9 +16,6 @@ public class Med {
     @Id
     private String nameMed;
 
-    @ManyToMany(targetEntity = Treatment.class)
-    List<Treatment> TreatmentList;
-
     @NonNull
     private float price;
     @NotNull

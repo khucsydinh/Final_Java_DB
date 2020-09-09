@@ -11,7 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -27,20 +29,18 @@ public class ExaminationController {
     public Iterable<Examination> getAllExamination(){
         return examinationRepository.findAll();
     }
-    @GetMapping("/{id}/{id2}/{id3}")
-    public Examination ExaminationById(@PathVariable(value = "id", required = false) Integer id,
-                                       @PathVariable(value = "id2", required = false) String id2,
-                                       @PathVariable(value = "id3", required = false) String id3){
-        ExaminationKey examinationKey = new ExaminationKey();
-        examinationKey.setIDExamination(id);
-        examinationKey.setID_DoctorExamination(id2);
-        examinationKey.setIDPatient(id3);
-        Optional<Examination> optionalExamination = examinationRepository.findById(examinationKey);
-        if(optionalExamination.isPresent()){
-            return optionalExamination.get();
+    @GetMapping("/search/{keyword}")
+    public List<Examination> searchByKeyWord(@PathVariable(value = "keyword",required = false) String keyword){
+        Iterable<Examination> lists = examinationRepository.findAll();
+        List<Examination> result = new ArrayList<>();
+        for(Examination ex : lists){
+            if(ex.getIDPatient().contains(keyword.toUpperCase())||ex.getIDPatient().contains(keyword.toLowerCase())){
+                result.add(ex);
+            }
         }
-        return null;
+        return result;
     }
+
     @DeleteMapping("/delete/{id}/{id2}/{id3}")
     public void delete(@PathVariable(value = "id", required = false) Integer id,
                        @PathVariable(value = "id2", required = false) String id2,

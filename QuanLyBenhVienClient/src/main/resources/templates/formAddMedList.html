@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head><title>Add Medicine List</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
+</head>
+<body>
+<form method="POST" th:action="@{/medlist}" action="" th:object="${medlist}">
+    <h1>Add a new Medicine List!</h1>
+    <h3>Input the Medicine List information ...</h3>
+    <table cellspacing="5" border="0">
+
+        <tr>
+            <td align="right"><label for="ID_Treatment">ID Treatment</label></td>
+            <td align="right"><input name="ID_Treatment" type="text" th:field="*{ID_Treatment}"/></td>
+        </tr>
+        <tr>
+            <td align="right"><label for="IDExamination">ID Examination</label></td>
+            <td align="right"><input name="IDExamination" type="text" th:field="*{IDExamination}"/></td>
+        </tr>
+        <tr>
+            <td align="right"><label for="IDPatient">ID Patient</label></td>
+            <td align="right"><input name="IDPatient" type="text" th:field="*{IDPatient}"/></td>
+        <tr>
+            <td align="right"><label for="nameDisease">Name Disease</label></td>
+            <td align="right"><input name="nameDisease" type="text" th:field="*{nameDisease}"/></td>
+        </tr>
+        <tr>
+            <td align="right"><label for="ID_DoctorExamination">ID Doctor Examination</label></td>
+            <td align="right"><input name="ID_DoctorExamination" type="text" th:field="*{ID_DoctorExamination}"/></td>
+        </tr>
+        <tr>
+            <td align="right"><label for="ID_DoctorCure">ID Doctor Cure</label></td>
+            <td align="right"><input name="ID_DoctorCure" type="text" th:field="*{ID_DoctorCure}"/></td>
+        </tr>
+        <tr>
+            <td align="right"><label for="ID_Nurse">ID Nurse</label></td>
+            <td align="right"><input name="ID_Nurse" type="text" th:field="*{ID_Nurse}"/></td>
+        </tr>
+        <tr>
+            <td align="right"><label for="nameMed">Name Medicine</label></td>
+            <td align="right"><input name="nameMed" type="text" th:field="*{nameMed}"/></td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td><br><input type="submit" value="Submit"></td>
+        </tr>
+    </table>
+
+</form>
+</body>
+</html>

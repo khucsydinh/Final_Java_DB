@@ -11,6 +11,8 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -26,6 +28,19 @@ public class DiseaseExamineController {
     public Iterable<DiseaseExamine> getAllDiseaseExamine(){
         return diseaseExamineRepository.findAll();
     }
+
+    @GetMapping("/search/{keyword}")
+    public List<DiseaseExamine> searchByKeyWord(@PathVariable(value = "keyword",required = false) String keyword){
+        Iterable<DiseaseExamine> lists = diseaseExamineRepository.findAll();
+        List<DiseaseExamine> result = new ArrayList<>();
+        for(DiseaseExamine ex : lists){
+            if(ex.getIDPatient().contains(keyword.toUpperCase())||ex.getIDPatient().contains(keyword.toLowerCase())){
+                result.add(ex);
+            }
+        }
+        return result;
+    }
+
     @GetMapping("/{id}/{id2}/{id3}/{id4}")
     public DiseaseExamine DiseaseExamineById(@PathVariable(value = "id", required = false) Integer id,
                                              @PathVariable(value = "id2", required = false) String id2,
