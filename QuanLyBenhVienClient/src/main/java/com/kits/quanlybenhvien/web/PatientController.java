@@ -68,7 +68,7 @@ public class PatientController {
         model.addAttribute("patient",patient);
         return "formAddPatient";
     }
-    @GetMapping("/search")
+    @PostMapping("/search")
     public String search(@RequestParam(value = "id",required = false) String id,Model model){
         Patient patient = rest.getForObject("http://localhost:8081/patient/{id}", Patient.class,id);
         model.addAttribute("patients",patient);

@@ -78,7 +78,7 @@ public class NurseController {
     @PostMapping("/search")
     public String search(@RequestParam(value = "id",required = false) String id,Model model){
         Nurse nurse = rest.getForObject("http://localhost:8081/nurse/{id}", Nurse.class,id);
-        model.addAttribute("nurse",nurse);
+        model.addAttribute("nurses",nurse);
         return "informationNurse";
     }
 
