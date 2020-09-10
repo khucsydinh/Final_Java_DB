@@ -41,9 +41,23 @@ public class NurseController {
                                @RequestParam(value = "address",required = false) String address,
                                @RequestParam(value = "exp",required = false) int exp,
                                @RequestParam(value = "diploma",required = false) String diploma ,
-                               @RequestParam(value = "phone",required = false) String phone) {
-        System.out.println(id);
-        Nurse nurse = new Nurse();
+                               @RequestParam(value = "phone",required = false) String phone,Nurse nurse, Model model) {
+        List<Nurse> nurses = Arrays.asList(rest.getForObject("http://localhost:8081/nurse",Nurse[].class));
+        for (Nurse nurse1 : nurses) {
+            if (id.equals(nurse1.getID_Nurse())) {
+                nurse.setID_Nurse(id);
+                nurse.setIdentityNumber(identity);
+                nurse.setNameNurse(name);
+                nurse.setDOB(dob);
+                nurse.setAddress(address);
+                nurse.setExp(exp);
+                nurse.setDiploma(diploma);
+                nurse.setPhone(phone);
+                model.addAttribute("warningAdd", "Deo them duocj boi vi bac si nay da co");
+                model.addAttribute("nurses",nurse);
+                return "formAddNurse";
+            }
+        }
         nurse.setID_Nurse(id);
         nurse.setIdentityNumber(identity);
         nurse.setNameNurse(name);
@@ -52,7 +66,26 @@ public class NurseController {
         nurse.setExp(exp);
         nurse.setDiploma(diploma);
         nurse.setPhone(phone);
-        log.info("New "+ nurse);
+        rest.postForObject("http://localhost:8081/nurse", nurse, Nurse.class);
+        return "redirect:/nurse";
+    }
+    @PostMapping("/{id}")
+    public String UpdateNurse(@PathVariable(value = "id",required = false) String id ,
+                               @RequestParam(value = "identityNumber", required = false) String identity,
+                               @RequestParam(value = "nameNurse", required = false) String name,
+                               @RequestParam(value = "DOB",required = false) String dob ,
+                               @RequestParam(value = "address",required = false) String address,
+                               @RequestParam(value = "exp",required = false) int exp,
+                               @RequestParam(value = "diploma",required = false) String diploma ,
+                               @RequestParam(value = "phone",required = false) String phone,Nurse nurse, Model model) {
+        nurse.setID_Nurse(id);
+        nurse.setIdentityNumber(identity);
+        nurse.setNameNurse(name);
+        nurse.setDOB(dob);
+        nurse.setAddress(address);
+        nurse.setExp(exp);
+        nurse.setDiploma(diploma);
+        nurse.setPhone(phone);
         rest.postForObject("http://localhost:8081/nurse", nurse, Nurse.class);
         return "redirect:/nurse";
     }
@@ -73,7 +106,7 @@ public class NurseController {
     public String editNurse(@PathVariable(value = "id",required = false)String id,Model model){
         Nurse nurse = rest.getForObject("http://localhost:8081/nurse/{id}",Nurse.class,id);
         model.addAttribute("nurse",nurse);
-        return "formAddNurse";
+        return "formUpdateNurse";
     }
     @PostMapping("/search")
     public String search(@RequestParam(value = "id",required = false) String id,Model model){

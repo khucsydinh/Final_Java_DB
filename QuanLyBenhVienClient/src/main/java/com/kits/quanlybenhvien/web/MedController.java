@@ -1,6 +1,7 @@
 package com.kits.quanlybenhvien.web;
 
 
+import com.kits.quanlybenhvien.entity.Doctor;
 import com.kits.quanlybenhvien.entity.Med;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -32,11 +33,20 @@ public class MedController {
     @PostMapping()
     public String processDesign(@RequestParam("nameMed") String nameMed ,
                                 @RequestParam("price") float price,
-                                @RequestParam("usedFor") String usedFor, Med med ) {
+                                @RequestParam("usedFor") String usedFor,
+                                Med med, Model model) {
+        List<Med> meds = Arrays.asList(rest.getForObject("http://localhost:8081/med", Med[].class));
+        for(Med med1 : meds){
+            med.setNameMed(nameMed);
+            med.setPrice(price);
+            med.setUsedFor(usedFor);
+            model.addAttribute("warningAdd", "Deo them duocj boi vi bac si nay da co");
+            model.addAttribute("meds",med);
+            return "formAddMed";
+        }
         med.setNameMed(nameMed);
         med.setPrice(price);
         med.setUsedFor(usedFor);
-
         log.info("New "+ med);
         rest.postForObject("http://localhost:8081/med", med, Med.class);
         return "redirect:/med";

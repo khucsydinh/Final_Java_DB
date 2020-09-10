@@ -7,6 +7,9 @@
 <form method="POST" th:action="@{/service}" action="" th:object="${service}">
     <h1>Add a new Service</h1>
     <h3>Input the service information ...</h3>
+    <div class="col-md-8 text-right">
+        <div class="alert alert-danger" th:text="${warningAdd}" role="alert"></div>
+    </div>
     <table cellspacing="5" border="0">
         <tr>
             <td align="right"><label for="nameService">Name Service: </label></td>

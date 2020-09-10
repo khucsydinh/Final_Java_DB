@@ -1,5 +1,6 @@
 package com.kits.quanlybenhvien.web;
 
+import com.kits.quanlybenhvien.entity.Doctor;
 import com.kits.quanlybenhvien.entity.Service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -30,7 +31,16 @@ public class ServiceController {
 
     @PostMapping
     public String processDesign(@RequestParam("nameService") String nameService ,
-                                @RequestParam("price") float price, Service service ) {
+                                @RequestParam("price") float price,
+                                Service service, Model model ) {
+        List<Service> services = Arrays.asList(rest.getForObject("http://localhost:8081/service", Service[].class));
+        for(Service service1 : services){
+            service.setNameService(nameService);
+            service.setPrice(price);
+            model.addAttribute("warningAdd", "Deo them duocj boi vi bac si nay da co");
+            model.addAttribute("services",service);
+            return "formAddService";
+        }
         service.setNameService(nameService);
         service.setPrice(price);
         log.info("New "+ service);

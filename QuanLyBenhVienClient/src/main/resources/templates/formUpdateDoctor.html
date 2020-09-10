@@ -25,10 +25,7 @@
                 <div class="divider"></div>
             </div>
             <div class="row">
-                <form method="POST" th:action="@{/doctor}" action="" th:object="${doctor}">
-                    <div class="col-md-8 text-right">
-                        <div class="alert alert-danger" th:text="${warningAdd}" role="alert"></div>
-                    </div>
+                <form method="POST" th:action="@{/doctor/{id}(id=${doctor.ID_Doctor})}" action="" th:object="${doctor}">
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="Doctor-name">Doctor Name</label>
@@ -37,10 +34,6 @@
                         <div class="form-group col-md-6">
                             <label for="Doctor-exp">Years of Experience</label>
                             <input type="text" class="form-control" th:field="*{exp}" name="exp">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="Doctor-id">Doctor ID</label>
-                            <input type="text" class="form-control" th:field="*{ID_Doctor}" name="id">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="Doctor-diploma">Diploma</label>
@@ -69,7 +62,7 @@
 
                     </div>
 
-                    <button type="submit" class="btn-primary btn-lg btn">Save Doctor</button>
+                    <button type="submit" class="btn-primary btn-lg btn">Update Doctor</button>
                 </form>
             </div>
 

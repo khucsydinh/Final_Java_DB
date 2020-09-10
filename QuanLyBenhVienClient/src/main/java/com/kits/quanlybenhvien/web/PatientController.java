@@ -1,6 +1,7 @@
 package com.kits.quanlybenhvien.web;
 
 import com.kits.quanlybenhvien.entity.Doctor;
+import com.kits.quanlybenhvien.entity.Nurse;
 import com.kits.quanlybenhvien.entity.Patient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -36,8 +37,40 @@ public class PatientController {
                              @RequestParam(value = "namePatient",required = false)String name,
                              @RequestParam(value = "DOB",required = false) String dob,
                              @RequestParam(value = "address",required = false)String address,
-                             @RequestParam(value = "phone",required = false)String phone){
-        Patient patient = new Patient();
+                             @RequestParam(value = "phone",required = false)String phone,
+                             Patient patient, Model model){
+        List<Patient> patients = Arrays.asList(rest.getForObject("http://localhost:8081/patient",Patient[].class));
+        for(Patient patient1 : patients){
+            if(id.equals(patient1.getID_Patient())){
+                patient.setID_Patient(id);
+                patient.setIdentityNumber(identity);
+                patient.setNamePatient(name);
+                patient.setDOB(dob);
+                patient.setAddress(address);
+                patient.setPhone(phone);
+                model.addAttribute("warningAdd", "Deo them duocj boi vi bac si nay da co");
+                model.addAttribute("patients",patient);
+                return "formAddPatient";
+            }
+        }
+        patient.setID_Patient(id);
+        patient.setIdentityNumber(identity);
+        patient.setNamePatient(name);
+        patient.setDOB(dob);
+        patient.setAddress(address);
+        patient.setPhone(phone);
+        log.info("New"+patient);
+        rest.postForObject("http://localhost:8081/patient",patient,Patient.class);
+        return "redirect:/patient";
+    }
+    @PostMapping("/{id}")
+    public String updatePatient(@PathVariable(value = "id",required = false) String id,
+                             @RequestParam(value = "identityNumber",required = false)String identity,
+                             @RequestParam(value = "namePatient",required = false)String name,
+                             @RequestParam(value = "DOB",required = false) String dob,
+                             @RequestParam(value = "address",required = false)String address,
+                             @RequestParam(value = "phone",required = false)String phone,
+                             Patient patient){
         patient.setID_Patient(id);
         patient.setIdentityNumber(identity);
         patient.setNamePatient(name);
@@ -63,7 +96,7 @@ public class PatientController {
     public String editIngredient(@PathVariable(value = "id",required = false)String id,Model model){
         Patient patient = rest.getForObject("http://localhost:8081/patient/{id}",Patient.class,id);
         model.addAttribute("patient",patient);
-        return "formAddPatient";
+        return "formUpdatePatient";
     }
     @PostMapping("/search")
     public String search(@RequestParam(value = "id",required = false) String id,Model model){

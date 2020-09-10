@@ -40,9 +40,50 @@ public class DoctorController {
                                 @RequestParam(value = "exp",required = false) int exp,
                                 @RequestParam(value = "diploma",required = false) String diploma ,
                                 @RequestParam(value = "field",required = false) String field,
-                                @RequestParam(value = "position",required = false) String position) {
-        System.out.println(id);
-        Doctor doctor = new Doctor();
+                                @RequestParam(value = "position",required = false) String position,
+                                Doctor doctor, Model model) {
+        List<Doctor> doctors = Arrays.asList(rest.getForObject("http://localhost:8081/doctor",Doctor[].class));
+        for (Doctor doctor1:doctors) {
+            if (id.equals(doctor1.getID_Doctor())) {
+                doctor.setID_Doctor(id);
+                doctor.setIdentityNumber(identity);
+                doctor.setNameDoctor(name);
+                doctor.setDOB(dob);
+                doctor.setAddress(address);
+                doctor.setExp(exp);
+                doctor.setDiploma(diploma);
+                doctor.setField(field);
+                doctor.setPosition(position);
+                log.info("New "+ doctor);
+                model.addAttribute("warningAdd", "Deo them duocj boi vi bac si nay da co");
+                model.addAttribute("doctors",doctor);
+                return "formAddDoctor";
+            }
+        }
+        doctor.setID_Doctor(id);
+        doctor.setIdentityNumber(identity);
+        doctor.setNameDoctor(name);
+        doctor.setDOB(dob);
+        doctor.setAddress(address);
+        doctor.setExp(exp);
+        doctor.setDiploma(diploma);
+        doctor.setField(field);
+        doctor.setPosition(position);
+        log.info("New "+ doctor);
+        rest.postForObject("http://localhost:8081/doctor", doctor, Doctor.class);
+        return "redirect:/doctor";
+    }
+    @PostMapping("/{id}")
+    public String updateDesign(@PathVariable(value = "id",required = false) String id ,
+                                @RequestParam(value = "identityNumber", required = false) String identity,
+                                @RequestParam(value = "nameDoctor", required = false) String name,
+                                @RequestParam(value = "DOB",required = false) String dob ,
+                                @RequestParam(value = "address",required = false) String address,
+                                @RequestParam(value = "exp",required = false) int exp,
+                                @RequestParam(value = "diploma",required = false) String diploma ,
+                                @RequestParam(value = "field",required = false) String field,
+                                @RequestParam(value = "position",required = false) String position,
+                                Doctor doctor) {
         doctor.setID_Doctor(id);
         doctor.setIdentityNumber(identity);
         doctor.setNameDoctor(name);
@@ -74,7 +115,7 @@ public class DoctorController {
     public String editDoctor(@PathVariable(value = "id",required = false)String id,Model model){
         Doctor doctor = rest.getForObject("http://localhost:8081/doctor/{id}",Doctor.class,id);
         model.addAttribute("doctor",doctor);
-        return "formAddDoctor";
+        return "formUpdateDoctor";
     }
     @PostMapping("/search")
     public String search(@RequestParam(value = "id",required = false) String id,Model model){
