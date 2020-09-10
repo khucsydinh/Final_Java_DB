@@ -64,7 +64,11 @@ public class MedListController {
                                 @PathVariable(value = "id7", required = false) String id7,
                                 @PathVariable(value = "id8", required = false) String id8,
                                 Model model){
-        rest.delete("http://localhost:8081/medlist/delete/{id}/{id2}/{id3}/{id4}/{id5}/{id6}/{id7}/{id8}",id,id2,id3,id4,id5,id6,id7,id8);
+        try {
+            rest.delete("http://localhost:8081/medlist/delete/{id}/{id2}/{id3}/{id4}/{id5}/{id6}/{id7}/{id8}", id, id2, id3, id4, id5, id6, id7, id8);
+        }catch( Exception e) {
+            model.addAttribute("warning","Cannot delete! This prescription is currently in use.");
+        }
         List<MedList> medlists = Arrays.asList(rest.getForObject("http://localhost:8081/medlist",MedList[].class));
         model.addAttribute("medlists",medlists);
         return "informationMedList";
