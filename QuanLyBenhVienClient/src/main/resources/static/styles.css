@@ -157,9 +157,6 @@ li.nav-item.active {
     padding: 0px;
 }
 
-.table {
-    color: inherit;
-}
 .table-striped tbody tr:nth-of-type(odd) {
     background-color: rgba(61,79,90,.03);
 }
@@ -169,7 +166,9 @@ li.nav-item.active {
 table.table tbody td, table.table thead th{
     font-size: 14px;
 }
-
+.table {
+    color: inherit;
+}
 .pagination .page-link [class^="ti-"], .pagination .page-link [class*=" ti-"] {
     margin-right: 10px;
 }
@@ -212,4 +211,77 @@ input.form-control {
 form .form-group label{
     font-weight: 600;
     font-size: 14px;
+}
+
+/*Icon box*/
+.widget-area {
+    background: #fff;
+    border-radius: 2px;
+    margin-top: 20px;
+}
+
+.widget-area .numeric {
+    font-size: 30px;
+    letter-spacing: 1px;
+}
+
+h4.wiget-title {
+    font-size: 13px;
+    letter-spacing: .5px;
+}
+.widget-left {
+    width: 30%;
+    display: inline-block;
+    vertical-align: 22px;
+    font-size: 30px;
+    text-align: center;
+}
+.icon-center {
+    display: flex;
+    justify-content: center;
+}
+.widget-left [class^="fa-"],
+.widget-left [class*="fa-"]{
+    background: #fff;
+    border-radius: 50%;
+    border: 1px solid;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.fa:before {
+    margin-right: 0;
+}
+.widget-right {
+    width: 62%;
+    display: inline-block;
+    padding: 20px 0;
+}
+
+.inc-dec{
+    font-size: 12px;
+}
+.inc-dec .fa-angle-up{
+    color: green;
+}
+.inc-dec .fa-angle-down{
+    color: red;
+}
+
+.color-red {
+    color: #E57498;
+}
+.color-green {
+    color: #3CB371
+}
+.color-orange {
+    color: #FF7D00;
+}
+
+.table-section {
+    background-color: #fff;
+    margin-top: 20px;
+    padding: 20px;
 }
