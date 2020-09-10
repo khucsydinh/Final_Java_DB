@@ -49,31 +49,26 @@
             <div class="row">
                 <table cellpadding="5" th:object="${meds}" class="table table-bordered table-striped dataTable no-footer text-center">
                     <thead>
-                        <tr role="row">
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Method</th>
-<<<<<<< HEAD
-                            <th>Edit</th>
-                            <th>Delete</th>
-=======
-                            <th class="text-center">Edit</th>
-                            <th class="text-center">Delete</th>
->>>>>>> e0600e4feb17e4e58914190873457813746c1a6f
-                        </tr>
+                    <tr role="row">
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Method</th>
+                        <th class="text-center">Edit</th>
+                        <th class="text-center">Delete</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="med:${meds}">
-                            <td th:text="${med.nameMed}"></td>
-                            <td th:text="${med.price}"></td>
-                            <td th:text="${med.usedFor}"></td>
-                            <td><a href="#" th:href="@{/med/edit/{id}(id=${med.nameMed})}">
-                                <i class="fa fa-edit fa-lg text-info"></i>
-                            </a></td>
-                            <td><a href="#" th:href="@{/med/delete/{id}(id=${med.nameMed})}">
-                                <i class="fa fa-trash fa-lg text-danger"></i>
-                            </a></td>
-                        </tr>
+                    <tr th:each="med:${meds}">
+                        <td th:text="${med.nameMed}"></td>
+                        <td th:text="${med.price}"></td>
+                        <td th:text="${med.usedFor}"></td>
+                        <td><a href="#" th:href="@{/med/edit/{id}(id=${med.nameMed})}">
+                            <i class="fa fa-edit fa-lg text-info"></i>
+                        </a></td>
+                        <td><a href="#" th:href="@{/med/delete/{id}(id=${med.nameMed})}">
+                            <i class="fa fa-trash fa-lg text-danger"></i>
+                        </a></td>
+                    </tr>
                     </tbody>
                 </table>
             </div><!-- /.lists -->
