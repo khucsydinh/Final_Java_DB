@@ -49,7 +49,11 @@ public class ServiceController {
     }
     @GetMapping("/delete/{nameService}")
     public String deleteMed(@PathVariable("nameService")String id, Model model) {
-        rest.delete("http://localhost:8081/service/delete/{nameService}",id);
+        try {
+            rest.delete("http://localhost:8081/service/delete/{nameService}", id);
+        } catch (Exception e) {
+            model.addAttribute("warning","Cannot delete! This service is currently in use");
+        }
         List<Service> services = Arrays.asList(rest.getForObject("http://localhost:8081/service",Service[].class));
         System.out.println(services);
         model.addAttribute("services",services);

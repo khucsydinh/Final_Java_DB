@@ -64,8 +64,13 @@ public class ServiceListController {
                                     @PathVariable(value = "id7", required = false) String id7,
                                     @PathVariable(value = "id8", required = false) String id8,
                                     Model model){
-        rest.delete("http://localhost:8081/servicelist/delete/{id}/{id2}/{id3}/{id4}/{id5}/{id6}/{id7}/{id8}",id,id2,id3,id4,id5,id6,id7,id8);
+        try {
+            rest.delete("http://localhost:8081/servicelist/delete/{id}/{id2}/{id3}/{id4}/{id5}/{id6}/{id7}/{id8}", id, id2, id3, id4, id5, id6, id7, id8);
+        } catch(Exception e) {
+            model.addAttribute("warning","Cannot delete! This service list is currently in use");
+        }
         List<ServiceList> servicelists = Arrays.asList(rest.getForObject("http://localhost:8081/servicelist",ServiceList[].class));
+        System.out.println(servicelists);
         model.addAttribute("servicelists",servicelists);
         return "informationServiceList";
     }
