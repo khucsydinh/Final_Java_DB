@@ -53,7 +53,7 @@ public class NurseController {
                 nurse.setExp(exp);
                 nurse.setDiploma(diploma);
                 nurse.setPhone(phone);
-                model.addAttribute("warningAdd", "Deo them duocj boi vi bac si nay da co");
+                model.addAttribute("warningAdd", "Nurse is already exist!");
                 model.addAttribute("nurses",nurse);
                 return "formAddNurse";
             }

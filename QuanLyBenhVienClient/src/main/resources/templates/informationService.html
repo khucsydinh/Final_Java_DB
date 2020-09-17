@@ -26,10 +26,10 @@
                     </div>
                     <div class="col-md-4">
                         <!-- Search -->
-                        <form class="search-form" method="get" action="#" th:action="@{/service/search}">
+                        <form class="search-form" method="post" action="#" th:action="@{/service/search}">
                             <div class="form-group">
                                 <label for="search">
-                                    <input type="search" name="id" class="form-control" id="search" placeholder="Search for service...">
+                                    <input name="nameService" type="search" class="form-control" id="search" placeholder="Enter service's name" minlength="1"  required>
                                 </label>
                             </div>
                         </form><!-- /.search -->

@@ -32,7 +32,7 @@ public class MedListController {
         return "formAddMedList";
     }
     @PostMapping
-    public String addmedlist(@RequestParam(value = "nameMed",required = false)String nameMed,
+    public String addMedList(@RequestParam(value = "nameMed",required = false)String nameMed,
                              @RequestParam(value = "ID_Treatment",required = false) Integer ID_Treatment,
                              @RequestParam(value = "IDExamination",required = false) Integer IDExamination,
                              @RequestParam(value = "nameDisease",required = false)String nameDisease,
@@ -73,7 +73,7 @@ public class MedListController {
         model.addAttribute("medlists",medlists);
         return "informationMedList";
     }
-    @GetMapping("/search")
+    @PostMapping("/search")
     public String search(@RequestParam(value = "id",required = false) String keyWord,Model model){
         System.out.println(keyWord);
         List<MedList> medLists = Arrays.asList(rest.getForObject("http://localhost:8081/medlist/search/{keyword}", MedList[].class,keyWord));

@@ -36,12 +36,36 @@
                     id7=${treatment.ID_Nurse})}"  th:object="${treatment}">
                         <div class="form-row">
                             <div class="form-group col-md-6">
+                                <label for="nameDisease">Name Disease</label>
+                                <p class="form-control-static" th:text="*{nameDisease}"></p>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="ID_DoctorExamination">Doctor Examination</label>
+                                <p class="form-control-static" th:text="*{ID_DoctorExamination}"></p>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="ID_DoctorCure">ID Doctor Cure</label>
+                                <p class="form-control-static" th:text="*{ID_DoctorCure}"></p>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="IDPatient">ID Patient</label>
+                                <p class="form-control-static" th:text="*{IDPatient}"></p>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="ID_Nurse">Nurse ID</label>
+                                <p class="form-control-static" th:text="*{ID_Nurse}"></p>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="ID_DoctorCure">Doctor Cure ID</label>
+                                <p class="form-control-static" th:text="*{ID_DoctorCure}"></p>
+                            </div>
+                            <div class="form-group col-md-6">
                                 <label for="atTime">Time</label>
-                                <input type="text" class="form-control" th:field="*{atTime}" name="atTime" th:placeholder="*{atTime}">
+                                <input type="text" class="form-control" th:field="*{atTime}" name="atTime" minlength="1" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="status">Status</label>
-                                <input type="text" class="form-control" th:field="*{status}" name="atTime" th:placeholder="*{status}">
+                                <input type="text" class="form-control" th:field="*{status}" name="status" minlength="1" required>
                             </div>
                         </div>
 

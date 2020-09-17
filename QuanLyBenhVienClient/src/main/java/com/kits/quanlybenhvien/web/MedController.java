@@ -40,7 +40,7 @@ public class MedController {
             med.setNameMed(nameMed);
             med.setPrice(price);
             med.setUsedFor(usedFor);
-            model.addAttribute("warningAdd", "Deo them duocj boi vi bac si nay da co");
+            model.addAttribute("warningAdd", "Med is already exist!");
             model.addAttribute("meds",med);
             return "formAddMed";
         }

@@ -37,7 +37,7 @@ public class ServiceController {
         for(Service service1 : services){
             service.setNameService(nameService);
             service.setPrice(price);
-            model.addAttribute("warningAdd", "Deo them duocj boi vi bac si nay da co");
+            model.addAttribute("warningAdd", "Service is already exist!");
             model.addAttribute("services",service);
             return "formAddService";
         }

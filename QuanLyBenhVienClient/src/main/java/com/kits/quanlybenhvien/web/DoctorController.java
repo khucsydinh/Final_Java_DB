@@ -55,7 +55,7 @@ public class DoctorController {
                 doctor.setField(field);
                 doctor.setPosition(position);
                 log.info("New "+ doctor);
-                model.addAttribute("warningAdd", "Deo them duocj boi vi bac si nay da co");
+                model.addAttribute("warningAdd", "Doctor is already exist!");
                 model.addAttribute("doctors",doctor);
                 return "formAddDoctor";
             }

@@ -75,7 +75,7 @@ public class ServiceListController {
         return "informationServiceList";
     }
 
-    @GetMapping("/search")
+    @PostMapping("/search")
     public String search(@RequestParam(value = "id",required = false) String keyWord,Model model){
         System.out.println(keyWord);
         List<ServiceList> serviceLists = Arrays.asList(rest.getForObject("http://localhost:8081/servicelist/search/{keyword}", ServiceList[].class,keyWord));

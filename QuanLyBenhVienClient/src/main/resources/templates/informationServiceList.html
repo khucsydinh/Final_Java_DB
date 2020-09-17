@@ -26,10 +26,10 @@
                     </div>
                     <div class="col-md-4">
                         <!-- Search -->
-                        <form class="search-form" method="get" action="#" th:action="@{/servicelist/search}">
+                        <form class="search-form" method="post" action="#" th:action="@{/servicelist/search}">
                             <div class="form-group">
                                 <label for="search">
-                                    <input type="search" name="id" class="form-control" id="search" placeholder="Search for service list...">
+                                    <input name="id" type="search" class="form-control" id="search" placeholder="Enter Patient ID" minlength="1" maxlength="4" required>
                                 </label>
                             </div>
                         </form><!-- /.search -->

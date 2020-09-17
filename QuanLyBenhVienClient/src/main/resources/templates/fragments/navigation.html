@@ -7,6 +7,27 @@
 
     <body>
         <div class="container menu-nav text-white" th:fragment="navigation">
+            <!--Top-nav-->
+            <nav class="topbar navbar navbar-default">
+                <div class="navbar-header">
+                    <div class="sidebar-header">
+                        <a th:href="@{/homePage}"><img th:src="@{/image/logo-dark.png}" class="logo" alt="logo"></a>
+                    </div>
+                </div>
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <form class="search-form" method="post" action="#" th:action="@{/home}" value="Validate">
+                            <div class="form-group">
+                                <label for="search">
+                                    <input type="search" name="id" class="form-control" id="search" minlength="1" maxlength="4" onkeyup="Validate(search)"   placeholder="Search for patient" required>
+                                </label>
+                            </div>
+                        </form><!-- /.search -->
+                    </li>
+                </ul>
+            </nav><!--/.top-nav-->
+
+            <!--Main-nav-->
             <nav class="navbar navbar-expand-lg ktisclinic-bg ">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="ti-menu text-white"></span>
@@ -51,6 +72,9 @@
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" th:href="@{/diseaseExamine}">All Disease Examine</a>
                                 <a class="dropdown-item" th:href="@{/diseaseExamine/add}">Add Disease Examined</a>
+                                <a class="dropdown-item" th:href="@{/diseasesummary7}">Disease Summary in July</a>
+                                <a class="dropdown-item" th:href="@{/repeateddisease}">Diseases Analysis</a>
+
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -82,10 +106,24 @@
                                 <a class="dropdown-item" th:href="@{/medlist/add}">Add Prescription</a>
                             </div>
                         </li>
+                    </ul>
+                </div>
+            </nav><!--/.main-nav-->
 
-            </ul>
-        </div>
-    </nav>
-</div>
+            <script type="text/javascript">
+                var goodColor = "#66cc66";
+                var badColor = "#ff6666";
+                function Validate(txt) {
+                    var message = document.getElementById('search');
+                    if(txt.value.length == 4){
+                        message.style.color = goodColor;
+                        message.innerHTML = "Valid";
+                    }else{
+                        message.style.color = badColor;
+                        message.innerHTML = "Patient ID must have 4 characters (Ex: BN01)"
+                    }
+                }
+            </script>
+                </div>
 </body>
 </html>

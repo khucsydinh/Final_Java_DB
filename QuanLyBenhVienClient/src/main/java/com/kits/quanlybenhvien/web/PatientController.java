@@ -48,7 +48,7 @@ public class PatientController {
                 patient.setDOB(dob);
                 patient.setAddress(address);
                 patient.setPhone(phone);
-                model.addAttribute("warningAdd", "Deo them duocj boi vi bac si nay da co");
+                model.addAttribute("warningAdd", "Patient is already exist!");
                 model.addAttribute("patients",patient);
                 return "formAddPatient";
             }

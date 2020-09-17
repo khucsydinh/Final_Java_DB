@@ -66,7 +66,7 @@ public class TreatmentController {
         try{
             rest.delete("http://localhost:8081/treatment/delete/{id}/{id2}/{id3}/{id4}/{id5}/{id6}/{id7}",id,id2,id3,id4,id5,id6,id7);
         }catch (Exception e){
-            model.addAttribute("warning","Phari tooi tooi ddam cho 2 cai");
+            model.addAttribute("warning","Phai toi toi dam cho 2 cai");
         }
 
         List<Treatment> treatments = Arrays.asList(rest.getForObject("http://localhost:8081/treatment",Treatment[].class));

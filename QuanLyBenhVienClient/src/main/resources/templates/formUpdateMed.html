@@ -34,11 +34,11 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="price">Price</label>
-                                <input type="text" class="form-control" th:field="*{price}" name="atTime" th:placeholder="*{price}">
+                                <input type="text" class="form-control" th:field="*{price}" name="atTime" th:placeholder="*{price}" minlength="1" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="usedFor">Method</label>
-                                <input type="text" class="form-control" th:field="*{usedFor}" name="atTime" th:placeholder="*{usedFor}">
+                                <input type="text" class="form-control" th:field="*{usedFor}" name="atTime" th:placeholder="*{usedFor}" minlength="1" required>
                             </div>
                         </div>
 

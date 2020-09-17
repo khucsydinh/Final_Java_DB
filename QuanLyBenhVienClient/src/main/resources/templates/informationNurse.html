@@ -29,7 +29,7 @@
                     <form class="search-form" method="post" action="#" th:action="@{/nurse/search}">
                         <div class="form-group">
                             <label for="search">
-                                <input name="id" type="search" class="form-control" id="search" placeholder="Search for nurse...">
+                                <input name="id" type="search" class="form-control" id="search" placeholder="Enter Nurse ID" minlength="1" maxlength="4" required>
                             </label>
                         </div>
                     </form><!-- /.search -->

@@ -29,15 +29,15 @@
                     <div class="form-row">
                         <div class="form-group col-md-7">
                             <label for="doctor-identity">Doctor Examination ID</label>
-                            <input type="text" class="form-control" th:field="*{ID_DoctorExamination}" name="doctor-identity">
+                            <input type="text" class="form-control" th:field="*{ID_DoctorExamination}" name="doctor-identity" minlength="1" required>
                         </div>
                         <div class="form-group col-md-7">
                             <label for="patient-id">Patient ID</label>
-                            <input type="text" class="form-control" th:field="*{IDPatient}" name="patient-id">
+                            <input type="text" class="form-control" th:field="*{IDPatient}" name="patient-id" minlength="1" required>
                         </div>
                         <div class="form-group col-md-7">
                             <label for="atTime">Time</label>
-                            <input type="text" class="form-control" th:field="*{atTime}" name="atTime">
+                            <input type="date" class="form-control" th:field="*{atTime}" name="atTime" minlength="1" required>
                         </div>
                     </div>
 
